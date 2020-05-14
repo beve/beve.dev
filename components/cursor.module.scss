@@ -1,0 +1,14 @@
+.outerCursor {
+          position: fixed;
+          z-index: 100000;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          width: ${cursorOuterSize}px;
+          height: ${cursorOuterSize}px;
+          background-color: red;
+          border-radius: 50%;
+          border: 1px solid #e73c36;
+          pointer-events: none;
+          background-color: transparent;
+}

@@ -1,0 +1,27 @@
+path {
+  stroke-linecap: round;
+  stroke-width: $barHeight;
+  &:first-of-type {
+    stroke: grid;
+  }
+  &:last-of-type {
+    stroke: $primary;
+    stroke-dasharray: $barWidth;
+    stroke-dashoffset: $barWidth;
+  }
+}
+text {
+  font-weight: 300;
+  stroke-width: 0.5px;
+  stroke: $colorGrey;
+}
+.text1 {
+  font-size: 1.6em;
+}
+.text2 {
+  font-size: 0.9em;
+}
+.text3 {
+  font-weight: 600;
+  font-size: 1.25em;
+}

@@ -1,0 +1,21 @@
+.contactInfos {
+  grid-area: infos;
+  font-size: 1em; // 16px
+  grid-column: 1;
+  justify-self: center;
+  div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-self: center;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    margin-bottom: 55px;
+    a {
+      font-weight: 300;
+    }
+    span {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+}
