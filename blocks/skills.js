@@ -7,7 +7,7 @@ import Bar from "../components/bar";
 const Skills = () => {
   return (
     <Grid
-      gridCss={{ gridRemplateRows: `490px 280px 280px 560px` }}
+      style={{ gridRemplateRows: `490px 280px 280px 560px` }}
       drawCols={14}
     >
       <div className="title">Compétences</div>

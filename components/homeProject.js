@@ -40,25 +40,79 @@ export default ({ customCss, name, illustration, logo, path }) => {
   };
 
   return (
-    <div className="homeProject" style={customCss}>
-      <div
-        tabIndex={0}
-        role="button"
-        ref={ref}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onKeyDown={handleClick}
-        onClick={handleClick}
-      >
-        <div>
-          <img fluid={illustration} loading="eager" />
-          <img ref={logoRef} fluid={logo} loading="eager" className="logo" />
+    <>
+      <div className="homeProject" style={customCss}>
+        <div
+          tabIndex={0}
+          role="button"
+          ref={ref}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onKeyDown={handleClick}
+          onClick={handleClick}
+        >
+          <div>
+            <img fluid={illustration} loading="eager" />
+            <img ref={logoRef} fluid={logo} loading="eager" className="logo" />
+          </div>
+          <b>
+            <span ref={maskRef}></span>
+          </b>
         </div>
-        <b>
-          <span ref={maskRef}></span>
-        </b>
+        <div className="name">{name}</div>
       </div>
-      <div className="name">{name}</div>
-    </div>
+      <style jsx>
+        {`
+          .homeProject {
+            position: relative;
+          }
+
+          b {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            pointer-events: none;
+          }
+
+          b span {
+            display: block;
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background-color: #e73c36;
+            border-radius: 50%;
+            opacity: 0;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+          }
+
+          .logo {
+            position: absolute;
+            z-index: 1;
+            width: 60%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+          }
+
+          .name {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            transform: translateY(0.8em);
+            font-size: 1.85em;
+            opacity: 1;
+            pointer-events: none;
+          }
+        `}
+      </style>
+    </>
   );
 };

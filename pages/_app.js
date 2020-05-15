@@ -1,4 +1,3 @@
-import styles from "./styles.scss";
 import Beve from "../components/beve";
 import Menu from "../components/menu";
 import Grid from "../components/grid";

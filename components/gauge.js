@@ -47,35 +47,65 @@ const Gauge = ({
   );
 
   return (
-    <svg
-      ref={ref}
-      style={customCss}
-      viewBox={`0 0 ${(radius * 2 + strokeWidth) * 1.5} ${
-        (radius * 2 + strokeWidth) * 1.5
-      }`}
-    >
-      <circle
-        cx={(radius + strokeWidth / 2) * 1.5}
-        cy={radius + strokeWidth / 2}
-        r={radius}
-      />
-      <text
-        x="50%"
-        y="35%"
-        textAnchor="middle"
-        dx="-.2em"
-        dy=".3em"
-        className="text1"
+    <>
+      <svg
+        ref={ref}
+        style={customCss}
+        viewBox={`0 0 ${(radius * 2 + strokeWidth) * 1.5} ${
+          (radius * 2 + strokeWidth) * 1.5
+        }`}
       >
-        {computedAnimatedValue}
-      </text>
-      <text x="50%" y="35%" textAnchor="middle" dx="1.2em" className="text2">
-        %
-      </text>
-      <text x="50%" y="85%" textAnchor="middle" className="text3">
-        {label}
-      </text>
-    </svg>
+        <circle
+          cx={(radius + strokeWidth / 2) * 1.5}
+          cy={radius + strokeWidth / 2}
+          r={radius}
+        />
+        <text
+          x="50%"
+          y="35%"
+          textAnchor="middle"
+          dx="-.2em"
+          dy=".3em"
+          className="text1"
+        >
+          {computedAnimatedValue}
+        </text>
+        <text x="50%" y="35%" textAnchor="middle" dx="1.2em" className="text2">
+          %
+        </text>
+        <text x="50%" y="85%" textAnchor="middle" className="text3">
+          {label}
+        </text>
+      </svg>
+      <style jsx>
+        {`
+          circle {
+            stroke: $primary;
+            stroke-width: 4px;
+            fill: none;
+          }
+
+          .text1 {
+            stroke-width: 0.5px;
+            font-size: 1.6em;
+            stroke: $colorGrey;
+          }
+
+          .text2 {
+            stroke-width: 0.5px;
+            font-size: 0.9em;
+            stroke: $colorGrey;
+          }
+
+          .text2 {
+            stroke-width: 0.5px;
+            font-weight: 600;
+            font-size: 1.3em;
+            stroke: $colorGrey;
+          }
+        `}
+      </style>
+    </>
   );
 };
 

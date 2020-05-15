@@ -1,15 +1,15 @@
 import React from "react";
 
-const Grid = ({ children, gridCss, drawCols, colsCss }) => {
+const Grid = ({ children, className, drawCols, colsCss, style }) => {
   let divs;
   if (drawCols) {
     divs = new Array(drawCols).fill();
   }
+
+  const s = drawCols ? { gridTemplateColumns: `repeat(${drawCols}, 1fr)` } : {};
+
   return (
-    <div
-      className="grid"
-      style={{ gridTemplateColumns: `repeat(${drawCols}, 1fr)`, ...gridCss }}
-    >
+    <div className={`${className} grid`} style={{ ...s, ...style }}>
       {divs &&
         divs.map((_, i) => (
           <b
@@ -22,6 +22,19 @@ const Grid = ({ children, gridCss, drawCols, colsCss }) => {
           ></b>
         ))}
       {children}
+      <style jsx>
+        {`
+          .grid {
+            display: grid;
+          }
+          .cols {
+            grid-row: 1 / -1;
+          }
+          .cols:nth-of-type(even) {
+            border-right: 1px solid #ececec;
+          }
+        `}
+      </style>
     </div>
   );
 };

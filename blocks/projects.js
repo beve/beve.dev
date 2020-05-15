@@ -5,7 +5,7 @@ import HomeProject from "../components/homeProject";
 
 export default function Projects({ data }) {
   return (
-    <Grid gridCss={{ gridTemplateRows: "repeat(6, 1fr)" }} drawCols={14}>
+    <Grid style={{ gridTemplateRows: "repeat(6, 1fr)" }} drawCols={14}>
       <div className="title">Projets</div>
       {/*data.allDatoCmsProject.edges.map((project, i) => {
         const row = [1, 2, 4, 5][i % 4];
