@@ -77,40 +77,40 @@ export default ({ customCss, name, illustration, logo, path }) => {
             pointer-events: none;
           }
 
-          b span {
-            display: block;
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            background-color: #e73c36;
-            border-radius: 50%;
-            opacity: 0;
-            width: 24px;
-            height: 24px;
-            pointer-events: none;
-          }
+            b span {
+              display: block;
+              position: absolute;
+              top: -12px;
+              left: -12px;
+              background-color: #e73c36;
+              border-radius: 50%;
+              opacity: 0;
+              width: 24px;
+              height: 24px;
+              pointer-events: none;
+            }
 
-          .logo {
-            position: absolute;
-            z-index: 1;
-            width: 60%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-          }
+            .logo {
+              position: absolute;
+              z-index: 1;
+              width: 60%;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              opacity: 0;
+            }
 
-          .name {
-            position: absolute;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-weight: bold;
-            transform: translateY(0.8em);
-            font-size: 1.85em;
-            opacity: 1;
-            pointer-events: none;
-          }
+            .name {
+              position: absolute;
+              left: 0;
+              right: 0;
+              text-align: center;
+              font-weight: bold;
+              transform: translateY(0.8em);
+              font-size: 1.85em;
+              opacity: 1;
+              pointer-events: none;
+            }
         `}
       </style>
     </>
