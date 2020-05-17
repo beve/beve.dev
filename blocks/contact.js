@@ -13,7 +13,7 @@ export default () => {
           <input type="email" placeholder="Email"></input>
           <textarea placeholder="Message"></textarea>
         </div>
-        <div clasName="submit">
+        <div className="submit">
           <Slider />
         </div>
       </Grid>

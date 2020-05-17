@@ -42,7 +42,7 @@ const Menu = () => {
             font-size: 14px;
             font-size: 0.85em;
             letter-spacing: 1.8px;
-            color: $textColor;
+            color: #ccc;
           }
         `}
       </style>

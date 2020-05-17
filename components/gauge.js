@@ -4,6 +4,7 @@ import useIntersection from "../hooks/useIntersection";
 import useTimeline from "../hooks/useTimeline";
 import CustomEase from "gsap/CustomEase3";
 import DrawSVG from "gsap/DrawSVGPlugin3";
+import theme from "../theme/index"
 gsap.registerPlugin(CustomEase);
 gsap.registerPlugin(DrawSVG);
 
@@ -80,7 +81,7 @@ const Gauge = ({
       <style jsx>
         {`
           circle {
-            stroke: $primary;
+            stroke: ${theme.color.primary};
             stroke-width: 4px;
             fill: none;
           }
@@ -88,20 +89,20 @@ const Gauge = ({
           .text1 {
             stroke-width: 0.5px;
             font-size: 1.6em;
-            stroke: $colorGrey;
+            stroke: ${theme.color.grey};
           }
 
           .text2 {
             stroke-width: 0.5px;
             font-size: 0.9em;
-            stroke: $colorGrey;
+            stroke: ${theme.color.grey};
           }
 
-          .text2 {
+          .text3 {
             stroke-width: 0.5px;
             font-weight: 600;
             font-size: 1.3em;
-            stroke: $colorGrey;
+            stroke: ${theme.color.grey};
           }
         `}
       </style>

@@ -1,5 +1,6 @@
 import Grid from "../components/grid";
 import AnimationButton from "../components/animationButton";
+import theme from "../theme/index"
 
 export default () => {
   return (
@@ -38,29 +39,11 @@ export default () => {
             line-height: 106px;
             line-height: 1.12em;
             letter-spacing: 2px;
-            // margin-top: -120px;
             font-weight: bold;
           }
 
-          @media (max-width: 1366px) {
-            .caption {
-              display: block;
-              margin-left: -0.2em;
-            }
-          }
-          @media (max-width: 1000px) {
-            .caption {
-              max-width: 700px;
-            }
-          }
-          @media (max-width: 800px) {
-            .caption {
-              max-width: 500px;
-            }
-          }
-
           .caption span {
-            color: $titleColork;
+            color: #ccc;
           }
 
           .animationButton {
@@ -84,8 +67,25 @@ export default () => {
           }
 
           .desc span {
-            color: $primary;
+            color: ${theme.color.primary};
             font-weight: 600;
+          }
+
+          @media (max-width: 1366px) {
+            .caption {
+              display: block;
+              margin-left: -0.2em;
+            }
+          }
+          @media (max-width: 1000px) {
+            .caption {
+              max-width: 700px;
+            }
+          }
+          @media (max-width: 800px) {
+            .caption {
+              max-width: 500px;
+            }
           }
         `}
       </style>

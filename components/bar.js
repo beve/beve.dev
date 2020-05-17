@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import useIntersection from "../hooks/useIntersection";
 import useTimeline from "../hooks/useTimeline";
+import theme from "../theme/index"
 
 export default ({
   value,
@@ -116,7 +117,7 @@ export default ({
             stroke: grid;
           }
           path:last-of-type {
-            stroke: $primary;
+            stroke: ${theme.color.primary};
             stroke-dasharray: ${width};
             stroke-dashoffset: ${width};
           }

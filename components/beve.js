@@ -19,37 +19,34 @@ const Beve = () => {
             font-weight: bold;
             line-height: 0.85em;
             grid-area: logo;
-          }
 
-          .beve .mainContainer {
-            display: flex;
-            height: 100%;
-            flex-flow: column nowrap;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .beve .mainContainer .beContainer {
-            margin-left: -11px;
-          }
-
-          .beve .mainContainer .veContainer {
-            display: inline-flex;
-            flex: 0 1 auto;
-            padding-left: 2px;
-            padding-right: 11px;
-            position: relative;
-          }
-
-          .beve .mainContainer .veContainer .dot {
-            padding: 0;
-            position: absolute;
-            bottom: 1px;
-            right: 0px;
-            width: 7px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: red;
+            &.mainContainer {
+              display: flex;
+              height: 100%;
+              flex-flow: column nowrap;
+              align-items: center;
+              justify-content: center;
+              .beContainer {
+                margin-left: -11px;
+              }
+              .veContainer {
+                display: inline-flex;
+                flex: 0 1 auto;
+                padding-left: 2px;
+                padding-right: 11px;
+                position: relative;
+                .dot {
+                  padding: 0;
+                  position: absolute;
+                  bottom: 1px;
+                  right: 0px;
+                  width: 7px;
+                  height: 6px;
+                  border-radius: 50%;
+                  background-color: red;
+                }
+              }
+            }
           }
         `}
       </style>

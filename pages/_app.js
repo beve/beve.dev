@@ -35,10 +35,39 @@ export default function App({ Component, pageProps }) {
             text-decoration: none;
             color: #343434;
           }
-        `}
-      </style>
-      <style jsx>
-        {`
+
+          @font-face {
+            font-family: "Open Sans";
+            src: url("fonts/OpenSans-Light.woff2") format("woff2"),
+              url("fonts/OpenSans-Light.woff") format("woff");
+            font-weight: 300;
+            font-style: normal;
+          }
+
+          @font-face {
+            font-family: "Open Sans";
+            src: url("fonts/OpenSans-Bold.woff2") format("woff2"),
+              url("fonts/OpenSans-Bold.woff") format("woff");
+            font-weight: bold;
+            font-style: normal;
+          }
+
+          @font-face {
+            font-family: "Open Sans";
+            src: url("fonts/OpenSans-Regular.woff2") format("woff2"),
+              url("fonts/OpenSans-Regular.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+          }
+
+          @font-face {
+            font-family: "Open Sans";
+            src: url("fonts/OpenSans-SemiBold.woff2") format("woff2"),
+              url("fonts/OpenSans-SemiBold.woff") format("woff");
+            font-weight: 600;
+            font-style: normal;
+          }
+
           .topGrid {
             position: fixed;
             z-index: 10;
@@ -47,13 +76,6 @@ export default function App({ Component, pageProps }) {
             max-width: 1440px;
             transform: translateX(0);
             grid-template-areas: "logo ... ... menu menu menu menu";
-          }
-
-          @media screen and (min-width: 1440px) {
-            .topGrid {
-              left: 50%;
-              transform: translateX(calc(-50%));
-            }
           }
 
           .mainGrid {
@@ -81,8 +103,15 @@ export default function App({ Component, pageProps }) {
               left: 50%;
               transform: translateX(calc(-50%));
             }
+            .topGrid {
+              left: 50%;
+              transform: translateX(calc(-50%));
+            }
           }
-
+        `}
+      </style>
+      <style jsx>
+        {`
           .main {
             grid-area: main;
             min-height: calc(100vh - 140px);
