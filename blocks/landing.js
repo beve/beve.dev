@@ -43,16 +43,17 @@ export default () => {
           }
 
           .caption span {
-            color: #ccc;
+            color: ${theme.color.primary};
           }
 
           .animationButton {
-            display: flex;
-            margin: auto 0;
             grid-row: 1;
-            grid-column: 13 / span 2;
-            box-sizing: border-box;
-            transform: translateX(calc(-50%));
+            grid-column: 12 / span 2;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 7px;
+            width: 160px;
+            height: 160px;
           }
 
           .desc {

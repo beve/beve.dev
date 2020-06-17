@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { gsap } from "gsap";
 import useIntersection from "../hooks/useIntersection";
 import useTimeline from "../hooks/useTimeline";
-import CustomEase from "gsap/CustomEase3";
-import DrawSVG from "gsap/DrawSVGPlugin3";
+import CustomEase from "gsap/CustomEase";
+import DrawSVG from "gsap/DrawSVGPlugin";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import theme from "../theme/index"
 gsap.registerPlugin(CustomEase);
 gsap.registerPlugin(DrawSVG);
+gsap.registerPlugin(ScrollTrigger);
 
 const Gauge = ({
-  color,
-  customCss,
+  style,
   value,
-  radius = 58,
-  strokeWidth = 15,
+  radius = 30,
+  strokeWidth = 7,
   label = "React",
 }) => {
   const [computedAnimatedValue, set] = useState(0);
@@ -48,65 +49,66 @@ const Gauge = ({
   );
 
   return (
-    <>
+    <div style={style} className="gaugeContainer">
       <svg
         ref={ref}
-        style={customCss}
-        viewBox={`0 0 ${(radius * 2 + strokeWidth) * 1.5} ${
-          (radius * 2 + strokeWidth) * 1.5
-        }`}
+        viewBox={`0 0 ${(radius * 2 + strokeWidth * 2)} ${(radius * 2 + strokeWidth * 2) + 20}`}
+        className="gauge"
       >
         <circle
-          cx={(radius + strokeWidth / 2) * 1.5}
-          cy={radius + strokeWidth / 2}
+          cx={radius + strokeWidth}
+          cy={radius + strokeWidth}
           r={radius}
         />
         <text
           x="50%"
-          y="35%"
+          y={radius / 2 - strokeWidth / 2}
           textAnchor="middle"
-          dx="-.2em"
-          dy=".3em"
+          dx="-2"
+          dy={radius + 2}
           className="text1"
         >
           {computedAnimatedValue}
         </text>
-        <text x="50%" y="35%" textAnchor="middle" dx="1.2em" className="text2">
+        <text x="50%" y={radius + strokeWidth + 1} dx="7" className="text2">
           %
         </text>
-        <text x="50%" y="85%" textAnchor="middle" className="text3">
+        <text x="50%" y={radius * 2 + strokeWidth * 2 + 14} textAnchor="middle" className="text3">
           {label}
         </text>
       </svg>
       <style jsx>
         {`
+          .gaugeContainer {
+            padding: 25px;
+            font-weight: 300;
+          }
+
+          .gauge {
+            width: 100%;
+          }
+
           circle {
             stroke: ${theme.color.primary};
-            stroke-width: 4px;
+            stroke-width: ${strokeWidth}px;
             fill: none;
           }
 
           .text1 {
-            stroke-width: 0.5px;
-            font-size: 1.6em;
-            stroke: ${theme.color.grey};
+            font-size: 14px;
           }
 
           .text2 {
-            stroke-width: 0.5px;
-            font-size: 0.9em;
-            stroke: ${theme.color.grey};
+            font-size: 7px;
           }
 
           .text3 {
-            stroke-width: 0.5px;
             font-weight: 600;
-            font-size: 1.3em;
-            stroke: ${theme.color.grey};
+            font-size: 9px;
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 

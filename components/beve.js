@@ -19,8 +19,7 @@ const Beve = () => {
             font-weight: bold;
             line-height: 0.85em;
             grid-area: logo;
-
-            &.mainContainer {
+            .mainContainer {
               display: flex;
               height: 100%;
               flex-flow: column nowrap;
@@ -30,15 +29,15 @@ const Beve = () => {
                 margin-left: -11px;
               }
               .veContainer {
+                position: relative;
                 display: inline-flex;
                 flex: 0 1 auto;
                 padding-left: 2px;
                 padding-right: 11px;
-                position: relative;
                 .dot {
                   padding: 0;
                   position: absolute;
-                  bottom: 1px;
+                  bottom: 4px;
                   right: 0px;
                   width: 7px;
                   height: 6px;

@@ -8,7 +8,7 @@ const Skills = () => {
   return (
     <>
       <Grid
-        style={{ gridRemplateRows: `490px 280px 280px 560px` }}
+        style={{ gridTemplateRows: `490px 280px 280px 560px` }}
         drawCols={14}
       >
         <div className="title">Compétences</div>
@@ -36,7 +36,6 @@ const Skills = () => {
           Backend
         </div>
         <Gauge
-          className="gauge"
           style={{
             gridRow: `2`,
             gridColumn: `3 / span 2`,
@@ -46,7 +45,6 @@ const Skills = () => {
           label="React"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `2`,
             gridColumn: `5 / span 2`,
@@ -56,7 +54,6 @@ const Skills = () => {
           label="Angular"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `1`,
             gridColumn: `7 / span 2`,
@@ -67,7 +64,6 @@ const Skills = () => {
           label="NodeJS"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `1`,
             gridColumn: `9 / span 2`,
@@ -78,7 +74,6 @@ const Skills = () => {
           label="Golang"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `2`,
             gridColumn: `9 / span 2`,
@@ -88,7 +83,6 @@ const Skills = () => {
           label="Php"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `2`,
             gridColumn: `11 / span 2`,
@@ -98,28 +92,24 @@ const Skills = () => {
           label="Admin système"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `3`,
             gridColumn: `5 / span 2`,
-            paddingTop: `5px`,
           }}
           value={80}
           label="Vanilla JS"
         />
         <Gauge
-          className="gauge"
           style={{
             gridRow: `3`,
             gridColumn: `7 / span 2`,
-            paddingTop: `5px`,
           }}
           value={70}
           label="Animations"
         />
         <div className="bars">
           <div style={{ maxWidth: `46%` }}>
-            <div className="label" style={{ marginBottom: `41px` }}>
+            <div className="label">
               IOT
             </div>
             <Bar value={70} label="C++" />
@@ -128,7 +118,7 @@ const Skills = () => {
             <Bar value={60} label="Électronique" />
           </div>
           <div style={{ maxWidth: `46%` }}>
-            <div className="label" style={{ marginBottom: `41px` }}>
+            <div className="label">
               & More
             </div>
             <Bar value={90} label="Impression 3D" />
@@ -140,10 +130,6 @@ const Skills = () => {
       </Grid>
       <style jsx>
         {`
-          .gauge {
-            margin: 0 auto;
-            width: 100%;
-          }
           .label {
             font-weight: bold;
             font-size: 1.9em;
@@ -156,7 +142,7 @@ const Skills = () => {
             grid-row: 4;
             grid-column: 3 / span 10;
             min-height: 560px;
-            background: #fff;
+            background-color: #fff;
             border: 1px solid #ececec;
             border-left: none;
             padding: 60px 60px 80px 60px;
@@ -171,7 +157,6 @@ const Skills = () => {
             position: relative;
             grid-row: 1;
             grid-column: 2 / span 3;
-            // transform: translateX(-100%);
             padding-top: 100px;
             align-self: start;
             font-size: 3.5em;

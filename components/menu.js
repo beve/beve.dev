@@ -1,4 +1,5 @@
 import React from "react";
+import theme from "../theme";
 
 const Menu = () => {
   return (
@@ -28,9 +29,9 @@ const Menu = () => {
             grid-area: menu;
             height: 140px;
             margin-left: -1px;
-            border-bottom: 1px solid lightblue;
-            border-left: 1px solid lightblue;
-            border-right: 1px solid lightblue;
+            border-bottom: 1px solid ${theme.color.grid};
+            border-left: 1px solid ${theme.color.grid};
+            border-right: 1px solid ${theme.color.grid};
             justify-content: space-evenly;
             align-items: center;
             text-transform: uppercase;
@@ -42,7 +43,7 @@ const Menu = () => {
             font-size: 14px;
             font-size: 0.85em;
             letter-spacing: 1.8px;
-            color: #ccc;
+            color: ${theme.color.text};
           }
         `}
       </style>

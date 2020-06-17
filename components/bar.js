@@ -5,12 +5,11 @@ import theme from "../theme/index"
 
 export default ({
   value,
-  height = 10,
-  width = 410,
+  barHeight = 5,
+  width = 195,
   label = "Arduino",
-  color,
 }) => {
-  const halfHeight = height / 2;
+  const halfHeight = barHeight / 2;
   const computedValue = (width * value) / 100;
   const valRef = useRef();
   const pathRef = useRef();
@@ -72,36 +71,38 @@ export default ({
   );
 
   return (
-    <>
-      <svg ref={ref} viewBox={`0 0 ${width + height} 93`} className="bar">
+    <div className="barContainer">
+      <svg ref={ref} viewBox={`0 0 ${width + barHeight} 27`} className="bar">
         <defs>
           <path
             id="labelPath"
-            d={`M${halfHeight},${50 - halfHeight} H${computedValue + 120}`}
+            d={`M${halfHeight},${15 - halfHeight} H${computedValue + 100}`}
           />
         </defs>
         <g fill="none">
           <path
-            d={`M${halfHeight},${50 - halfHeight} H${width + halfHeight}`}
+            className="pathPath"
+            d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />{" "}
           <path
+            className="pathAnimated"
             ref={pathRef}
-            d={`M${halfHeight},${50 - halfHeight} H${width + halfHeight}`}
+            d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />
         </g>
         <g ref={valRef} style={{ opacity: 0 }}>
-          <text dy="-22" className="text1">
-            <textPath href="#labelPath" startOffset={computedValue - 20}>
+          <text dy="0" className="text1">
+            <textPath href="#labelPath" startOffset={computedValue - 10}>
               {computedAnimatedValue}
             </textPath>
           </text>
-          <text dy="-31" className="text2">
-            <textPath href="#labelPath" startOffset={computedValue + 12}>
+          <text dy="-6" className="text2">
+            <textPath href="#labelPath" startOffset={computedValue + 7}>
               %
             </textPath>
           </text>
         </g>
-        <text dy="-22" dx="-2" className="text3">
+        <text className="text3">
           <textPath href="#labelPath" startOffset={0}>
             {label}
           </textPath>
@@ -109,35 +110,37 @@ export default ({
       </svg>
       <style jsx>
         {`
+          .barContainer {
+            margin: 35px 0;
+          }
+
           path {
             stroke-linecap: round;
-            stroke-width: ${height};
+            stroke-width: ${barHeight};
           }
-          path:first-of-type {
-            stroke: grid;
+          path.pathPath {
+            stroke: ${theme.color.grid};
           }
-          path:last-of-type {
+          path.pathAnimated {
             stroke: ${theme.color.primary};
             stroke-dasharray: ${width};
             stroke-dashoffset: ${width};
           }
           text {
             font-weight: 300;
-            stroke-width: 0.5px;
-            stroke: #333;
           }
           .text1 {
-            font-size: 1.6em;
+            font-size: 14px;
           }
           .text2 {
-            font-size: 0.9em;
+            font-size: 7px;
           }
           .text3 {
             font-weight: 600;
-            font-size: 1.25em;
+            font-size: 9px;
           }
         `}
       </style>
-    </>
+    </div>
   );
 };

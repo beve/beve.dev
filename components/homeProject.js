@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 
-export default ({ customCss, name, illustration, logo, path }) => {
+export default ({ customCss, name, illustration, logo }) => {
   const ref = useRef(null);
   const maskRef = useRef(null);
   const logoRef = useRef(null);

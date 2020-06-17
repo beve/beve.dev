@@ -1,5 +1,5 @@
 const theme = {
-  font: "Open Sans",
+  fontFamily: "Open Sans",
   color: {
     title: '#f52f1b',
     primary: '#e73c36',

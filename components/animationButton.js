@@ -44,9 +44,9 @@ const AnimationButton = () => {
   return (
     <svg
       ref={ref}
-      viewBox="0 0 162 162"
-      height={162}
-      width={162}
+      viewBox="0 0 160 160"
+      height="160"
+      width="160"
       role="button"
       onMouseEnter={onMouseEnterHandle}
       onMouseLeave={onMouseLeaveHandle}

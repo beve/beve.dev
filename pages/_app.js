@@ -3,6 +3,7 @@ import Menu from "../components/menu";
 import Grid from "../components/grid";
 import Cursor from "../components/cursor";
 import ContactInfos from "../components/contactInfos";
+import theme from "../theme"
 
 export default function App({ Component, pageProps }) {
   return (
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps }) {
         {`
           body,
           html {
-            font-family: #343434;
+            font-family: ${theme.fontFamily};
             color: #343434;
             padding: 0;
             margin: 0;
