@@ -3,42 +3,41 @@ import React from "react";
 import Grid from "../components/grid";
 import HomeProject from "../components/homeProject";
 
-export default function Projects({data}) {
+export default function Projects({ data }) {
   return (
     <>
-      <Grid style={{ gridTemplateRows: "repeat(6, 1fr)" }} drawCols={14}>
+      <Grid style={{ gridTemplateRows: "repeat(8, 250px)" }} drawCols={14}>
         <div className="title">Projets</div>
         {data.map((project, i) => {
-          console.log(project);
-        const row = [1, 2, 4, 5][i % 4];
-        const col = [8, 3][i % 2];
-        const path = `/p/${project.node.slug}`;
-        return (
-          <HomeProject
-            key={project.node.id}
-            name={project.node.title}
-            illustration={project.node.acf.illustration.sourceUrl}
-            logo={project.node.acf.logo.sourceUrl}
-            id={project.node.id}
-            path={path}
-            customCss={{
-              gridRow: `${row} / span 2`,
-              gridColumn: `${col} / span 5`,
-            }}
-          />
-        );
-      })}
+          const row = [2, 3, 5, 6][i % 4];
+          const col = [8, 3][i % 2];
+          const path = `/p/${project.node.slug}`;
+          return (
+            <HomeProject
+              key={project.node.id}
+              name={project.node.title}
+              illustration={project.node.acf.illustration.sourceUrl}
+              logo={project.node.acf.logo.sourceUrl}
+              id={project.node.id}
+              path={path}
+              style={{
+                gridRow: `${row} / span 2`,
+                gridColumn: `${col} / span 5`,
+              }}
+            />
+          );
+        })}
       </Grid>
       <style jsx>
         {`
           .title {
-            grid-row: 1;
+            grid-row: 2;
             grid-column: 2 / -1;
             font-size: 3.5em;
             letter-spacing: 1px;
-            align-self: end;
+            align-self: center;
+            margin-bottom: 20px;
             font-weight: 700;
-            padding-bottom: 55px;
           }
           
           .illustrations {

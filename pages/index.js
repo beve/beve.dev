@@ -17,7 +17,7 @@ const IndexPage = ({ projects }) => {
       <Landing />
       <Skills />
       <Projects data={projects} />
-      {/* <Customers /> */}
+      <Customers />
       <Contact />
     </>
   )

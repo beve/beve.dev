@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 
-export default ({ customCss, name, illustration, logo }) => {
+export default ({ style, name, illustration, logo }) => {
   const ref = useRef(null);
   const maskRef = useRef(null);
   const logoRef = useRef(null);
@@ -41,7 +41,7 @@ export default ({ customCss, name, illustration, logo }) => {
 
   return (
     <>
-      <div className="homeProject" style={customCss}>
+      <div className="homeProject" style={style}>
         <div
           tabIndex={0}
           role="button"
@@ -51,13 +51,9 @@ export default ({ customCss, name, illustration, logo }) => {
           onKeyDown={handleClick}
           onClick={handleClick}
         >
-          <div>
-            <img src={illustration} />
+            <img src={illustration} className="illustration" />
             <img ref={logoRef} src={logo} className="logo" />
-          </div>
-          <b>
-            <span ref={maskRef}></span>
-          </b>
+            <b><span ref={maskRef}></span></b>
         </div>
         <div className="name">{name}</div>
       </div>
@@ -65,29 +61,14 @@ export default ({ customCss, name, illustration, logo }) => {
         {`
           .homeProject {
             position: relative;
-          }
 
-          b {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            pointer-events: none;
-          }
-
-            b span {
-              display: block;
+            .illustration {
               position: absolute;
-              top: -12px;
-              left: -12px;
-              background-color: #e73c36;
-              border-radius: 50%;
-              opacity: 0;
-              width: 24px;
-              height: 24px;
-              pointer-events: none;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
 
             .logo {
@@ -100,17 +81,41 @@ export default ({ customCss, name, illustration, logo }) => {
               opacity: 0;
             }
 
+            b {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              pointer-events: none;
+              span {
+                display: block;
+                position: absolute;
+                top: -12px;
+                left: -12px;
+                background-color: #e73c36;
+                border-radius: 50%;
+                opacity: 0.8;
+                transform: scale(100);
+                width: 24px;
+                height: 24px;
+                pointer-events: none;
+              }
+            }
+
             .name {
               position: absolute;
               left: 0;
               right: 0;
+              bottom: -80px;
               text-align: center;
               font-weight: bold;
-              transform: translateY(0.8em);
               font-size: 1.85em;
               opacity: 1;
               pointer-events: none;
             }
+          }
         `}
       </style>
     </>
