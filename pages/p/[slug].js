@@ -10,7 +10,7 @@ export default function ProjectPage({ data }) {
     stack,
     customer,
     technologies,
-    perimeter,
+    context,
     description,
   } = data.allDatoCmsProject.edges[0].node;
   */
@@ -91,35 +91,3 @@ export default function ProjectPage({ data }) {
     </>
   );
 }
-
-/*
-export const query = graphql`
-  query ProjectQuery($id: String) {
-    allDatoCmsProject(filter: {id: {eq: $id}, locale: {eq: "fr"}}) {
-      edges {
-        node {
-          id
-          name
-          stack
-          technologies
-          customer
-          description
-          perimeter
-          images {
-            alt
-            title
-            fluid {
-              aspectRatio
-              height
-              sizes
-              src
-              srcSet
-              width
-            }
-          }
-        }
-      }
-    }
-  }
-`
-*/

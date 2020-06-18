@@ -3,23 +3,22 @@ import React from "react";
 import Grid from "../components/grid";
 import HomeProject from "../components/homeProject";
 
-export default function Projects({ data }) {
+export default function Projects({data}) {
   return (
     <>
       <Grid style={{ gridTemplateRows: "repeat(6, 1fr)" }} drawCols={14}>
         <div className="title">Projets</div>
-        {/*data.allDatoCmsProject.edges.map((project, i) => {
+        {data.map((project, i) => {
+          console.log(project);
         const row = [1, 2, 4, 5][i % 4];
         const col = [8, 3][i % 2];
-        const path = `/projet/${project.node.name
-          .replace(" ", "-")
-          .toLowerCase()}`;
+        const path = `/p/${project.node.slug}`;
         return (
           <HomeProject
             key={project.node.id}
-            name={project.node.name}
-            illustration={project.node.illustration.fluid}
-            logo={project.node.logo.fluid}
+            name={project.node.title}
+            illustration={project.node.acf.illustration.sourceUrl}
+            logo={project.node.acf.logo.sourceUrl}
             id={project.node.id}
             path={path}
             customCss={{
@@ -28,7 +27,7 @@ export default function Projects({ data }) {
             }}
           />
         );
-      })*/}
+      })}
       </Grid>
       <style jsx>
         {`
@@ -124,41 +123,3 @@ export default function Projects({ data }) {
     </>
   );
 }
-
-/*
-export default (props) => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query Projects {
-          allDatoCmsProject(
-            filter: {
-              locale: { eq: "fr" }
-              meta: { status: { eq: "published" } }
-            },
-            sort: {fields: order, order: ASC}
-          ) {
-            edges {
-              node {
-                id
-                name
-                illustration {
-                  fluid {
-                    ...GatsbyDatoCmsFluid
-                  }
-                }
-                logo {
-                  fluid {
-                    ...GatsbyDatoCmsFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      `}
-      render={(data) => <Projects data={data} {...props} />}
-    />
-  )
-}
-*/

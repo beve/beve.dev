@@ -14,7 +14,7 @@ export default ({ customCss, name, illustration, logo }) => {
     const el = maskRef.current;
     const { top, left, height } = ref.current.getBoundingClientRect();
     const scale = height / 8; // 12 is half cursor size
-    const imageRef = logoRef.current.imageRef.current;
+    const imageRef = logoRef.current;
     const imageWrapperRef = imageRef.parentNode.parentNode;
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
     gsap.set("#inner-cursor", { visibility: "hidden" });
@@ -27,7 +27,7 @@ export default ({ customCss, name, illustration, logo }) => {
     tl.clear();
     const el = maskRef.current;
     const { top, left } = ref.current.getBoundingClientRect();
-    const imageRef = logoRef.current.imageRef.current;
+    const imageRef = logoRef.current;
     const imageWrapperRef = imageRef.parentNode.parentNode;
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
     gsap.set("#inner-cursor", { visibility: "visible" });
@@ -52,8 +52,8 @@ export default ({ customCss, name, illustration, logo }) => {
           onClick={handleClick}
         >
           <div>
-            <img fluid={illustration} loading="eager" />
-            <img ref={logoRef} fluid={logo} loading="eager" className="logo" />
+            <img src={illustration} />
+            <img ref={logoRef} src={logo} className="logo" />
           </div>
           <b>
             <span ref={maskRef}></span>

@@ -1,13 +1,18 @@
-import Beve from "../components/beve";
-import Menu from "../components/menu";
-import Grid from "../components/grid";
-import Cursor from "../components/cursor";
-import ContactInfos from "../components/contactInfos";
+import Beve from "../components/beve"
+import Menu from "../components/menu"
+import Grid from "../components/grid"
+import Cursor from "../components/cursor"
+import ContactInfos from "../components/contactInfos"
 import theme from "../theme"
+import { ApolloProvider } from '@apollo/react-hooks'
+import { useApollo } from "../lib/apolloClient"
 
 export default function App({ Component, pageProps }) {
+
+  const apolloClient = useApollo(pageProps.initialApolloState)
+
   return (
-    <>
+    <ApolloProvider client={apolloClient}>
       <Cursor />
       <div>
         <Grid className="topGrid">
@@ -35,6 +40,7 @@ export default function App({ Component, pageProps }) {
           a {
             text-decoration: none;
             color: #343434;
+            cursor: none;
           }
 
           @font-face {
@@ -119,6 +125,6 @@ export default function App({ Component, pageProps }) {
           }
         `}
       </style>
-    </>
+    </ApolloProvider>
   );
 }

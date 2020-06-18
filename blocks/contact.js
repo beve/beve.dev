@@ -34,6 +34,8 @@ export default () => {
             font-family: Open Sans;
             font-weight: 300;
             padding: 20px 30px 24px 30px;
+            outline: none;
+            cursor: none;
           }
           input:focus,
           textarea:focus {
