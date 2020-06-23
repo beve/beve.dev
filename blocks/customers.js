@@ -16,7 +16,7 @@ export default function Customers({ data }) {
   return (
     <>
       <Grid
-        style={{ gridTemplateRows: "380px 160px 160px 190px" }}
+        style={{ gridTemplateRows: "180px 160px 160px 190px" }}
         drawCols={14}
       >
         <div className="title">Clients</div>

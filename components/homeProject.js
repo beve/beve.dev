@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 
 export default ({ style, name, illustration, logo }) => {
-  const ref = useRef(null);
   const maskRef = useRef(null);
   const logoRef = useRef(null);
 
@@ -12,27 +11,23 @@ export default ({ style, name, illustration, logo }) => {
     const tl = timeline.current;
     tl.clear();
     const el = maskRef.current;
-    const { top, left, height } = ref.current.getBoundingClientRect();
+    const { top, left, height } = el.parentNode.getBoundingClientRect();
     const scale = height / 8; // 12 is half cursor size
-    const imageRef = logoRef.current;
-    const imageWrapperRef = imageRef.parentNode.parentNode;
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
     gsap.set("#inner-cursor", { visibility: "hidden" });
     tl.fromTo(el, { scale: 0 }, { scale, duration: 0.5 });
-    tl.to(imageWrapperRef, 0.5, { opacity: 1 }, "<.1");
+    tl.to(logoRef.current, 0.3, { opacity: 1 }, '<0.1');
   };
 
   const handleMouseLeave = (e) => {
     const tl = timeline.current;
     tl.clear();
     const el = maskRef.current;
-    const { top, left } = ref.current.getBoundingClientRect();
-    const imageRef = logoRef.current;
-    const imageWrapperRef = imageRef.parentNode.parentNode;
+    const { top, left } = el.parentNode.getBoundingClientRect();
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
     gsap.set("#inner-cursor", { visibility: "visible" });
     tl.to(el, 0.5, { scale: 0 });
-    tl.to(imageWrapperRef, 0.3, { opacity: 0 }, "<");
+    tl.to(logoRef.current, 0.3, { opacity: 0 }, '<');
   };
 
   const handleClick = () => {
@@ -45,7 +40,6 @@ export default ({ style, name, illustration, logo }) => {
         <div
           tabIndex={0}
           role="button"
-          ref={ref}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onKeyDown={handleClick}
@@ -94,10 +88,9 @@ export default ({ style, name, illustration, logo }) => {
                 position: absolute;
                 top: -12px;
                 left: -12px;
+                opacity: 0;
                 background-color: #e73c36;
                 border-radius: 50%;
-                opacity: 0.8;
-                transform: scale(100);
                 width: 24px;
                 height: 24px;
                 pointer-events: none;

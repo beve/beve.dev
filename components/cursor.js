@@ -1,143 +1,67 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const Cursor = ({ cursorSize = 180, hideCursor = true }) => {
+const Cursor = ({ cursorSize = 14, hideCursor = true }) => {
   const innerCursor = useRef();
   const outerCursor = useRef();
-  const mousePosition = useRef({ x: 0, y: 0 });
-  const lockOuter = useRef(false);
-  // const hovered = useRef(false)
-  const cursorInnerRatio = 0.145;
-  const cursorInnerRatioBig = 0.435;
-  const cursorOuterSize = cursorSize * cursorInnerRatioBig;
-  const bigCursorTL = gsap.timeline({
-    paused: true,
-    defaults: { ease: "linear" },
-  });
-  const outerCursorTL = gsap.timeline({
-    paused: true,
-    defaults: { ease: "linear" },
-  });
 
   useEffect(() => {
     // Hide main cursor
     if (hideCursor) {
       document.body.style.cursor = "none";
     }
-    // Main loop
-    const renderCursor = () => {
-      // Set inner cursor position
-      const { x: mouseX, y: mouseY } = mousePosition.current;
-      gsap.set(innerCursor.current, {
-        x: mouseX,
-        y: mouseY,
+
+    const mouseMoveHandle = (e) => {
+
+      const x = e.clientX;
+      const y = e.clientY;
+
+      gsap.to(innerCursor.current, {
+        x,
+        y,
+        duration: 0.3,
       });
-      if (!lockOuter.current) {
-        gsap.set(outerCursor.current, {
-          x: mouseX,
-          y: mouseY,
-        });
-      }
-      // if (hovered.current) {
-      //   gsap.set(outerCursor.current, {
-      //     x: `-=${cursorOuterSize / 2 - cursorSize / 2 + 1}`,
-      //     y: `-=${cursorOuterSize / 2 - cursorSize / 2 + 1}`,
-      //   })
-      // }
-      // }
-      requestAnimationFrame(renderCursor);
-    };
-    requestAnimationFrame(renderCursor);
-    // set event listeners
-    const setMousePosition = (e) => {
-      mousePosition.current = {
-        x: e.clientX - cursorSize / 2,
-        y: e.clientY - cursorSize / 2,
-      };
+      gsap.to(outerCursor.current, {
+        x: x,
+        y: y,
+        duration: 0.5,
+      });
     };
     // Event listeners
-    document.addEventListener("mousemove", setMousePosition);
+    document.addEventListener("mousemove", mouseMoveHandle);
     return () => {
-      document.removeEventListener("mousemove", setMousePosition);
+      document.removeEventListener("mousemove", mouseMoveHandle);
     };
-  }, [cursorSize, hideCursor, cursorOuterSize]);
+  }, [cursorSize, hideCursor]);
 
   useEffect(() => {
-    bigCursorTL.fromTo(
-      innerCursor.current,
-      {
-        scale: cursorInnerRatio,
-        opacity: 1,
-      },
-      {
-        duration: 0.2,
-        scale: cursorInnerRatioBig,
-        opacity: 0.3,
-      }
-    );
-    const surroundItem = (e) => {
-      bigCursorTL.play();
-    };
-    const leaveItem = (e) => {
-      // hovered.current = false
-      bigCursorTL.reverse();
-    };
-    // Foreach links
-    document.querySelectorAll('[data-cursor="big"]').forEach((item) => {
-      item.addEventListener("mouseenter", surroundItem);
-      item.addEventListener("mouseleave", leaveItem);
+    var tl = gsap.timeline();
+    document.querySelectorAll('[data-cursor]').forEach(function (el) {
+      const cursorType = el.getAttribute('data-cursor');
+      // if (cursorType === 'around') {
+      //   el.addEventListener('mouseenter', () => {
+      //     gsap.to(el, 0.3, { x: '-=3' })
+      //     gsap.to(outerCursor.current, 0.8, { transform: 'scale(4)', delay: 0.5 })
+      //   });
+      //   el.addEventListener('mouseleave', () => {
+      //     gsap.to(outerCursor.current, 0.3, { transform: 'scale(1)' })
+      //     gsap.to(el, 0.8, { x: '+=3', delay: 0.5 })
+      //   });
+      // }
+      // if (cursorType === 'big') {
+      //   el.addEventListener('mouseenter', () => {
+      //     tl.clear();
+      //     tl.to(innerCursor.current, 0.8, { opacity: 0.4, transform: 'scale(3)', transformOrigin: 'center center' })
+      //     console.log('mouse enter')
+      //   });
+      //   el.addEventListener('mouseleave', () => {
+      //     tl.clear();
+      //     tl.to(innerCursor.current, 0.8, { transform: 'scale(1)', opacity: 1, transformOrigin: 'center center' })
+      //     console.log('mouse leave')
+      //   });
+      // }
     });
-  }, [bigCursorTL, outerCursorTL, cursorOuterSize]);
-
-  useEffect(() => {
-    outerCursorTL.fromTo(
-      innerCursor.current,
-      {
-        scale: cursorInnerRatio,
-        opacity: 1,
-      },
-      {
-        duration: 0.3,
-        scale: cursorInnerRatioBig,
-        opacity: 0.1,
-      }
-    );
-    const surroundItem = (e) => {
-      const el = e.target;
-      const { top, left, width, height } = el.getBoundingClientRect();
-      const size = Math.max(width, height);
-      gsap.to(outerCursor.current, 0.3, {
-        x: left + width / 2 - cursorSize / 2,
-        y: top + height / 2 - cursorSize / 2,
-      });
-      outerCursorTL.fromTo(
-        outerCursor.current,
-        {
-          height: cursorSize,
-          width: cursorSize,
-          opacity: 0,
-          scale: cursorInnerRatio,
-        },
-        {
-          duration: 0.3,
-          opacity: 1,
-          scale: (cursorInnerRatioBig * size) / 130,
-        },
-        "<"
-      );
-      lockOuter.current = true;
-      outerCursorTL.play();
-    };
-    const leaveItem = (e) => {
-      outerCursorTL.reverse();
-      lockOuter.current = false;
-    };
-    // Foreach links
-    document.querySelectorAll('[data-cursor="around"]').forEach((item) => {
-      item.addEventListener("mouseenter", surroundItem);
-      item.addEventListener("mouseleave", leaveItem);
-    });
-  }, [bigCursorTL, outerCursorTL, cursorSize]);
+  }, []);
 
   return (
     <>
@@ -147,28 +71,28 @@ const Cursor = ({ cursorSize = 180, hideCursor = true }) => {
         {`
           .innerCursor {
             position: fixed;
-            z-index: 100000;
-            top: 0;
-            left: 0;
+            z-index: 10;
+            top: -${cursorSize / 2}px;
+            left: -${cursorSize / 2}px;
             width: ${cursorSize}px;
             height: ${cursorSize}px;
-            border-radius: 50%;
+            background-color: red;
+            border-radius: 100%;
+            opacity: 0.8;
             background-color: #e73c36;
             pointer-events: none;
           }
           .outerCursor {
             position: fixed;
-            z-index: 100000;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            width: ${cursorOuterSize}px;
-            height: ${cursorOuterSize}px;
-            background-color: red;
-            border-radius: 50%;
+            z-index: 10;
+            top: -${cursorSize / 2 + 1}px;
+            left: -${cursorSize / 2 + 1}px;
+            width: ${cursorSize}px;
+            height: ${cursorSize}px;
+            background-color: rgba(255, 0, 0, 0.4);
+            border-radius: 100%;
             border: 1px solid #e73c36;
             pointer-events: none;
-            background-color: transparent;
           }
         `}
       </style>

@@ -37,10 +37,10 @@ const Beve = () => {
                 .dot {
                   padding: 0;
                   position: absolute;
-                  bottom: 4px;
+                  bottom: 2px;
                   right: 0px;
                   width: 7px;
-                  height: 6px;
+                  height: 7px;
                   border-radius: 50%;
                   background-color: red;
                 }
