@@ -40,6 +40,7 @@ const Menu = () => {
             background-color: #fff;
           }
           a {
+            padding: 20px;
             font-size: 14px;
             font-size: 0.85em;
             letter-spacing: 1.8px;
