@@ -14,9 +14,10 @@ export default ({ style, name, illustration, logo }) => {
     const { top, left, height } = el.parentNode.getBoundingClientRect();
     const scale = height / 8; // 12 is half cursor size
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
-    gsap.set("#inner-cursor", { visibility: "hidden" });
-    tl.fromTo(el, { scale: 0 }, { scale, duration: 0.5 });
-    tl.to(logoRef.current, 0.3, { opacity: 1 }, '<0.1');
+    gsap.set("#innerCursor", { visibility: "hidden" });
+    gsap.set("#outerCursor", { visibility: "hidden" });
+    tl.fromTo(el, { scale: 1 }, { scale, duration: 0.3, ease: 'power1.in' });
+    tl.to(logoRef.current, 0.3, { opacity: 1 }, '<0.05');
   };
 
   const handleMouseLeave = (e) => {
@@ -25,13 +26,15 @@ export default ({ style, name, illustration, logo }) => {
     const el = maskRef.current;
     const { top, left } = el.parentNode.getBoundingClientRect();
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
-    gsap.set("#inner-cursor", { visibility: "visible" });
+    gsap.set("#innerCursor", { visibility: "visible" });
+    gsap.set("#outerCursor", { visibility: "visible" });
     tl.to(el, 0.5, { scale: 0 });
     tl.to(logoRef.current, 0.3, { opacity: 0 }, '<');
   };
 
   const handleClick = () => {
-    gsap.to("#inner-cursor", 0.5, { visibility: "visible" });
+    gsap.to("#innerCursor", 0.5, { visibility: "visible" });
+    gsap.set("#outerCursor", { visibility: "visible" });
   };
 
   return (
