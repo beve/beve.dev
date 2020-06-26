@@ -3,6 +3,7 @@ import Menu from "../components/menu"
 import Grid from "../components/grid"
 import Cursor from "../components/cursor"
 import ContactInfos from "../components/contactInfos"
+import Reveal from "../components/reveal"
 import theme from "../theme"
 import { ApolloProvider } from '@apollo/react-hooks'
 import { useApollo } from "../lib/apolloClient"
@@ -14,16 +15,17 @@ export default function App({ Component, pageProps }) {
   return (
     <ApolloProvider client={apolloClient}>
       <Cursor />
+      <Reveal />
       <div>
         <Grid className="topGrid">
           <Beve />
           <Menu />
         </Grid>
-        <Grid className="mainGrid">
+        <div className="mainGrid">
           <main className="main">
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
           </main>
-        </Grid>
+        </div>
         <Grid className="bottomGrid">
           <ContactInfos />
         </Grid>
@@ -85,14 +87,6 @@ export default function App({ Component, pageProps }) {
             grid-template-areas: "logo ... ... menu menu menu menu";
           }
 
-          .mainGrid {
-            margin: 0 auto;
-            width: 100vw;
-            max-width: 1440px;
-            grid-template-columns: repeat(7, 1fr);
-            grid-template-areas: "main main main main main main main";
-          }
-
           .bottomGrid {
             position: fixed;
             z-index: 10;
@@ -119,8 +113,12 @@ export default function App({ Component, pageProps }) {
       </style>
       <style jsx>
         {`
+          .mainGrid {
+            margin: 0 auto;
+            width: 100vw;
+            max-width: 1440px;
+          }
           .main {
-            grid-area: main;
             min-height: calc(100vh - 140px);
           }
         `}

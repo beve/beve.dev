@@ -5,21 +5,29 @@ import Gauge from "../components/gauge";
 import Bar from "../components/bar";
 
 const Skills = () => {
+
+  const isMobile = false;
+
   return (
     <>
       <Grid
         style={{ gridTemplateRows: `490px 280px 280px 560px` }}
-        drawCols={14}
+        drawCols={isMobile ? 7 : 14}
       >
         <div className="title">Compétences</div>
         <div
           className="label"
-          style={{
+          style={isMobile ? {
             gridRow: `1`,
-            gridColumn: `3 / span 2`,
+            gridColumn: `2 / span 2`,
             justifySelf: `center`,
             alignSelf: `end`,
-          }}
+          } : {
+              gridRow: `1`,
+              gridColumn: `3 / span 2`,
+              justifySelf: `center`,
+              alignSelf: `end`,
+            }}
         >
           Frontend
         </div>
