@@ -1,6 +1,8 @@
 import Grid from "../../components/grid";
 import Down from "../../components/down";
 import Close from "../../components/close";
+import { initializeApollo } from '../../lib/apolloClient'
+import { gql } from 'apollo-boost';
 
 export default function ProjectPage({ data }) {
   /*
@@ -12,8 +14,10 @@ export default function ProjectPage({ data }) {
     technologies,
     context,
     description,
-  } = data.allDatoCmsProject.edges[0].node;
+  } = data;
   */
+
+  // console.log(data);
 
   return (
     <>
@@ -29,7 +33,7 @@ export default function ProjectPage({ data }) {
           opacity: 0.3,
         }}
       >
-          {/* 
+        {/* 
         <div className="illustrations">
           {images.map((image) => {
             const { fluid, alt, title } = image;
@@ -90,4 +94,79 @@ export default function ProjectPage({ data }) {
       </style>
     </>
   );
+}
+
+export async function getStaticPaths() {
+
+  const query = gql`
+  {
+    projects(where: {status: PUBLISH}) {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+  }
+  `
+
+  const apolloClient = initializeApollo()
+
+  var result = await apolloClient.query({
+    query,
+    variables: {},
+  })
+
+  const paths = [];
+  result.data.projects.edges.forEach(edge => {
+    paths.push({params: { slug: edge.node.slug}})
+  });
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const query = gql`
+  {
+    projects(where: {search: "${params.slug}"}) {
+      edges {
+        node {
+          slug
+          title(format: RAW)
+          acf {
+            context
+            customer
+            position
+            stack
+            technologies
+            url
+            illustration {
+              sourceUrl(size: LARGE)
+            }
+            logo {
+              sourceUrl(size: LARGE)
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+  const apolloClient = initializeApollo()
+
+  var result = await apolloClient.query({
+    query,
+    variables: {},
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      data: result.data.projects.edges[0].node
+    },
+    unstable_revalidate: 1,
+  }
 }

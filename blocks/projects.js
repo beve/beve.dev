@@ -19,6 +19,7 @@ export default function Projects({ data }) {
               illustration={project.node.acf.illustration.sourceUrl}
               logo={project.node.acf.logo.sourceUrl}
               id={project.node.id}
+              slug={project.node.slug}
               path={path}
               style={{
                 gridRow: `${row} / span 2`,

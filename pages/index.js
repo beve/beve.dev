@@ -57,7 +57,7 @@ export async function getStaticProps() {
 
   var result = await apolloClient.query({
     query,
-    variables: { skip: 0, first: 10 },
+    variables: { skip: 0, first: 6 },
   })
 
   return {

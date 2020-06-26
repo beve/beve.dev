@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
+import Link from "next/link"
 import gsap from "gsap";
 
-export default ({ style, name, illustration, logo }) => {
+export default ({ style, name, illustration, logo, slug }) => {
   const maskRef = useRef(null);
   const logoRef = useRef(null);
 
@@ -39,21 +40,23 @@ export default ({ style, name, illustration, logo }) => {
 
   return (
     <>
-      <div className="homeProject" style={style}>
-        <div
-          tabIndex={0}
-          role="button"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onKeyDown={handleClick}
-          onClick={handleClick}
-        >
+      <Link href="/p/[slug]" as={`/p/${slug}`} scroll={false}>
+        <div className="homeProject" style={style}>
+          <div
+            tabIndex={0}
+            role="button"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onKeyDown={handleClick}
+            onClick={handleClick}
+          >
             <img src={illustration} className="illustration" />
             <img ref={logoRef} src={logo} className="logo" />
             <b><span ref={maskRef}></span></b>
+          </div>
+          <div className="name">{name}</div>
         </div>
-        <div className="name">{name}</div>
-      </div>
+      </Link>
       <style jsx>
         {`
           .homeProject {

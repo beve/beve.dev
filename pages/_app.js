@@ -7,6 +7,7 @@ import Reveal from "../components/reveal"
 import theme from "../theme"
 import { ApolloProvider } from '@apollo/react-hooks'
 import { useApollo } from "../lib/apolloClient"
+import { Transition, TransitionGroup } from "react-transition-group"
 
 export default function App({ Component, pageProps }) {
 
@@ -23,7 +24,14 @@ export default function App({ Component, pageProps }) {
         </Grid>
         <div className="mainGrid">
           <main className="main">
-            <Component {...pageProps} />
+            <TransitionGroup>
+              <Transition timeout={300}>
+                {props => {
+                  // console.log('ici', props, pageProps);
+                  return <Component {...pageProps} />
+                }}
+              </Transition>
+            </TransitionGroup>
           </main>
         </div>
         <Grid className="bottomGrid">
