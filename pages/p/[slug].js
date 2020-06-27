@@ -5,19 +5,13 @@ import { initializeApollo } from '../../lib/apolloClient'
 import { gql } from 'apollo-boost';
 
 export default function ProjectPage({ data }) {
-  /*
   const {
-    name,
-    images,
-    stack,
-    customer,
-    technologies,
-    context,
-    description,
+    title,
+    slug,
+    acf
   } = data;
-  */
 
-  // console.log(data);
+  const { context, customer,  description, illustration, logo, images, position, stack, technologies, url } = acf;
 
   return (
     <>
@@ -33,15 +27,14 @@ export default function ProjectPage({ data }) {
           opacity: 0.3,
         }}
       >
-        {/* 
         <div className="illustrations">
           {images.map((image) => {
-            const { fluid, alt, title } = image;
+            console.log(image);
             return (
-              <Img
+              <img
                 key={title}
-                fluid={fluid}
-                alt={alt}
+                src={image.sourceUrl}
+                alt={title}
                 title={title}
                 style={{ height: "100%" }}
               />
@@ -49,11 +42,11 @@ export default function ProjectPage({ data }) {
           })}
         </div>
         <div className="sheet">
-          <div>{name}</div>
+          <div>{title}</div>
           <div className="infos">
             <div>
               <span>Contexte:</span>
-              {perimeter}
+              {context}
             </div>
             <div>
               <span>Client:</span>
@@ -81,7 +74,6 @@ export default function ProjectPage({ data }) {
         <div className="iconDown" data-cursor="big">
           <Down />
         </div>
-          */}
       </Grid>
       <style jsx>
         {`
@@ -119,7 +111,8 @@ export async function getStaticPaths() {
 
   const paths = [];
   result.data.projects.edges.forEach(edge => {
-    paths.push({params: { slug: edge.node.slug}})
+    console.log(edge.node.slug);
+    paths.push({ params: { slug: edge.node.slug } })
   });
 
   return {
@@ -131,18 +124,22 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const query = gql`
   {
-    projects(where: {search: "${params.slug}"}) {
+    projects(where: {search: "${params.slug.replace('-', ' ')}"}) {
       edges {
         node {
           slug
           title(format: RAW)
           acf {
+            description
             context
             customer
             position
             stack
             technologies
             url
+            images {
+              sourceUrl(size: LARGE)
+            }
             illustration {
               sourceUrl(size: LARGE)
             }

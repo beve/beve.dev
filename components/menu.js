@@ -1,25 +1,26 @@
-import React from "react";
-import theme from "../theme";
+import React from "react"
+import theme from "../theme"
+import Link from "next/link"
 
 const Menu = () => {
   return (
     <>
       <div className="menu">
-        <a href="/" data-cursor="big">
+        <Link href="/" data-cursor="big">
           Accueil
-        </a>
-        <a href="/" data-cursor="big">
+        </Link>
+        <Link href="/" data-cursor="big">
           Compétences
-        </a>
-        <a href="/" data-cursor="big">
+        </Link>
+        <Link href="/" data-cursor="big">
           Projets
-        </a>
-        <a href="/" data-cursor="big">
+        </Link>
+        <Link href="/" data-cursor="big">
           Clients
-        </a>
-        <a href="/" data-cursor="big">
+        </Link>
+        <Link href="/" data-cursor="big">
           Contact
-        </a>
+        </Link>
       </div>
       <style jsx>
         {`
