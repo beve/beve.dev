@@ -1,3 +1,7 @@
+import Link from "next/link"
+import { ApolloProvider } from '@apollo/react-hooks'
+import { useApollo } from "../lib/apolloClient"
+import { TransitionGroup } from "react-transition-group"
 import Beve from "../components/beve"
 import Menu from "../components/menu"
 import Grid from "../components/grid"
@@ -5,35 +9,31 @@ import Cursor from "../components/cursor"
 import ContactInfos from "../components/contactInfos"
 import Reveal from "../components/reveal"
 import theme from "../theme"
-import { ApolloProvider } from '@apollo/react-hooks'
-import { useApollo } from "../lib/apolloClient"
-import { Transition, TransitionGroup } from "react-transition-group"
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, router }) {
 
   const apolloClient = useApollo(pageProps.initialApolloState)
 
   return (
+
     <ApolloProvider client={apolloClient}>
       <Cursor />
-      <Reveal />
       <div>
         <Grid className="topGrid">
-          <Beve />
+          <Link href="/p/[slug]" as="/p/arkeogis" scroll={false}>
+            <a data-cursor="big">
+              <Beve />
+            </a>
+          </Link>
           <Menu />
         </Grid>
-        <div className="mainGrid">
-          <main className="main">
-            <TransitionGroup>
-              <Transition timeout={300}>
-                {props => {
-                  // console.log('ici', props, pageProps);
-                  return <Component {...pageProps} />
-                }}
-              </Transition>
-            </TransitionGroup>
-          </main>
-        </div>
+        <main className="mainGrid">
+          <TransitionGroup component={null}>
+            <Reveal key={router.pathname} pathname={router.asPath}>
+              <Component {...pageProps} />
+            </Reveal>
+          </TransitionGroup>
+        </main>
         <Grid className="bottomGrid">
           <ContactInfos />
         </Grid>
@@ -123,11 +123,9 @@ export default function App({ Component, pageProps }) {
         {`
           .mainGrid {
             margin: 0 auto;
+            min-height: calc(100vh - 140px);
             width: 100vw;
             max-width: 1440px;
-          }
-          .main {
-            min-height: calc(100vh - 140px);
           }
         `}
       </style>

@@ -1,26 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { Transition } from 'react-transition-group'
 
-export default function Reveal() {
+export default function Reveal({ children, in: inProp, pathname }) {
 
-  useEffect(() => {
-    const tl = gsap.timeline()
-    // tl.to('rect', { width: '100vw', height: '100vh', duration: 3.5})
-  }, [])
+  const enterHandle = (node) => {
+    console.log(node)
+    gsap.fromTo(node, { opacity: 0 }, { opacity: 1, duration: 1 })
+  }
+
+  const exitHandle = (node) => {
+    console.log(node)
+    gsap.fromTo(node, { opacity: 1 }, { opacity: 0, duration: 1 })
+  }
 
   return (
-    <>
-      <svg>
-        <defs>
-          <clipPath id="clip">
-            <rect />
-          </clipPath>
-        </defs>
-      </svg>
-      <div className="band">
-      </div>
-      <style jsx>
-        {`
+    <Transition timeout={0} in={inProp} onEnter={enterHandle} onExit={exitHandle}>
+      <div className={`pageContainer ${pathname === '/' ? 'home' : ''}`}>
+        <div>
+          <div className="band">
+          </div>
+          {children}
+        </div>
+        <svg>
+          <defs>
+            <clipPath id="clip">
+              <rect />
+            </clipPath>
+          </defs>
+        </svg>
+        <style jsx>
+          {`
+          .container {
+            border: 2px solid red;
+          }
           svg {
             display: none;
           }
@@ -37,8 +50,9 @@ export default function Reveal() {
             clip-path: url(#clip);
           }
         `}
-      </style>
-    </>
+        </style>
+      </div>
+    </Transition>
   )
 
 }

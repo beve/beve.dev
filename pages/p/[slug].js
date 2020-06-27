@@ -14,11 +14,10 @@ export default function ProjectPage({ data }) {
   const { context, customer,  description, illustration, logo, images, position, stack, technologies, url } = acf;
 
   return (
-    <>
+    <div className="project">
       <Grid
-        className="projects"
         style={{
-          gridTemplateRows: `225px 260px 1fr`,
+          gridTemplateRows: `1fr`,
           height: `100vh`,
         }}
         drawCols={14}
@@ -29,7 +28,6 @@ export default function ProjectPage({ data }) {
       >
         <div className="illustrations">
           {images.map((image) => {
-            console.log(image);
             return (
               <img
                 key={title}
@@ -77,6 +75,13 @@ export default function ProjectPage({ data }) {
       </Grid>
       <style jsx>
         {`
+          .project {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+          }
           .sheet div {
             font-size: 3em;
             font-weight: bold;
@@ -84,7 +89,7 @@ export default function ProjectPage({ data }) {
           }
         `}
       </style>
-    </>
+    </div>
   );
 }
 
@@ -111,7 +116,6 @@ export async function getStaticPaths() {
 
   const paths = [];
   result.data.projects.edges.forEach(edge => {
-    console.log(edge.node.slug);
     paths.push({ params: { slug: edge.node.slug } })
   });
 

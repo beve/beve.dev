@@ -18,6 +18,7 @@ const Beve = () => {
             font-size: 2.5em;
             font-weight: bold;
             line-height: 0.85em;
+            height: 100%;
             grid-area: logo;
             .mainContainer {
               display: flex;
