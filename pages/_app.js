@@ -55,32 +55,32 @@ export default function App({ Component, pageProps, router }) {
 
           @font-face {
             font-family: "Open Sans";
-            src: url("fonts/OpenSans-Light.woff2") format("woff2"),
-              url("fonts/OpenSans-Light.woff") format("woff");
+            src: url("/fonts/OpenSans-Light.woff2") format("woff2"),
+              url("/fonts/OpenSans-Light.woff") format("woff");
             font-weight: 300;
             font-style: normal;
           }
 
           @font-face {
             font-family: "Open Sans";
-            src: url("fonts/OpenSans-Bold.woff2") format("woff2"),
-              url("fonts/OpenSans-Bold.woff") format("woff");
+            src: url("/fonts/OpenSans-Bold.woff2") format("woff2"),
+              url("/fonts/OpenSans-Bold.woff") format("woff");
             font-weight: bold;
             font-style: normal;
           }
 
           @font-face {
             font-family: "Open Sans";
-            src: url("fonts/OpenSans-Regular.woff2") format("woff2"),
-              url("fonts/OpenSans-Regular.woff") format("woff");
+            src: url("/fonts/OpenSans-Regular.woff2") format("woff2"),
+              url("/fonts/OpenSans-Regular.woff") format("woff");
             font-weight: normal;
             font-style: normal;
           }
 
           @font-face {
             font-family: "Open Sans";
-            src: url("fonts/OpenSans-SemiBold.woff2") format("woff2"),
-              url("fonts/OpenSans-SemiBold.woff") format("woff");
+            src: url("/fonts/OpenSans-SemiBold.woff2") format("woff2"),
+              url("/fonts/OpenSans-SemiBold.woff") format("woff");
             font-weight: 600;
             font-style: normal;
           }
@@ -122,6 +122,7 @@ export default function App({ Component, pageProps, router }) {
       <style jsx>
         {`
           .mainGrid {
+            position: relative;
             margin: 0 auto;
             min-height: calc(100vh - 140px);
             width: 100vw;

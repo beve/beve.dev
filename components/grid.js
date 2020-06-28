@@ -29,6 +29,7 @@ const Grid = ({ children, className, drawCols, colsCss, style }) => {
           }
           .cols {
             grid-row: 1 / -1;
+            pointer-events: none;
           }
           .cols:nth-of-type(even) {
             border-right: 1px solid #ececec;
