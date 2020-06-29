@@ -5,54 +5,54 @@ import { Transition } from 'react-transition-group'
 export default function Reveal({ children, in: inProp, pathname }) {
 
   const enterHandle = (node) => {
-    console.log(node)
-    gsap.fromTo(node, { opacity: 0 }, { opacity: 1, duration: 1 })
+    const rects = node.getElementsByTagName('rect');
+    gsap.set(rects, { height: 0 })
+    gsap.to(rects, { stagger: 0.2, height: 100, duration: 1, ease: 'none' })
   }
 
   const exitHandle = (node) => {
-    console.log(node)
-    gsap.fromTo(node, { opacity: 1 }, { opacity: 0, duration: 1 })
+    // const rects = node.gjetElementsByTagName('rect');
+    // gsap.to(rects, { stagger: 0.1, height: 0, duration: 1, ease: 'none' })
+    // gsap.set(rects, { scaleY: 0})
+    // gsap.to(rects, { scaleY: 0, duration: 1 })
   }
 
+  const rects = new Array(14).fill();
+  let pix = 0;
+
   return (
-    <Transition timeout={0} in={inProp} onEnter={enterHandle} onExit={exitHandle}>
-      <div className={`pageContainer ${pathname === '/' ? 'home' : ''}`}>
-        <div>
-          <div className="band">
+    <>
+      <Transition timeout={{ enter: 0, exit: 1400 }} in={inProp} onEnter={enterHandle} appear onExit={exitHandle} unmountOnExit={true}>
+        <div className={`pageContainer ${pathname === '/' ? 'home' : ''}`}>
+          <div className="mask">
+            {children}
           </div>
-          {children}
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <clipPath id="clip" clipPathUnits="objectBoundingBox" transform="scale(0.01)">
+                {rects.map((_, i) => {
+                  pix += i % 2;
+                  console.log(pix);
+                  return (
+                    <rect x={(i * 7.124) } y="0" width={7.124} height="100" />
+                  )
+                })}
+              </clipPath>
+            </defs>
+          </svg>
+          <style jsx>
+            {`
+              .mask {
+                height: 100vh;
+                pointer-events: none;
+                clip-path: url(#clip);
+                background: #ccc;
+              }
+            `}
+          </style>
         </div>
-        <svg>
-          <defs>
-            <clipPath id="clip">
-              <rect />
-            </clipPath>
-          </defs>
-        </svg>
-        <style jsx>
-          {`
-          .container {
-            border: 2px solid red;
-          }
-          svg {
-            display: none;
-          }
-          .band {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            background-color: #ccc;
-            opacity: 0.8;
-            clip-path: url(#clip);
-          }
-        `}
-        </style>
-      </div>
-    </Transition>
+      </Transition>
+    </>
   )
 
 }
