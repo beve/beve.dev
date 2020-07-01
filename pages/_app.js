@@ -29,9 +29,9 @@ export default function App({ Component, pageProps, router }) {
         </Grid>
         <main className="mainGrid">
           <TransitionGroup component={null}>
-            <Reveal key={router.pathname} pathname={router.asPath}>
-              <Component {...pageProps} />
-            </Reveal>
+            {/* <Reveal key={router.pathname} pathname={router.asPath}> */}
+              <Component key={router.pathname} {...pageProps} />
+            {/* </Reveal> */}
           </TransitionGroup>
         </main>
         <Grid className="bottomGrid">
@@ -127,6 +127,7 @@ export default function App({ Component, pageProps, router }) {
             min-height: calc(100vh - 140px);
             width: 100vw;
             max-width: 1440px;
+            overflow: hidden;
           }
         `}
       </style>

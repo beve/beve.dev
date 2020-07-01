@@ -1,6 +1,6 @@
 import React from "react";
 
-const Grid = ({ children, className, drawCols, colsCss, style }) => {
+const Grid = ({ children, className = '', drawCols, colsCss, style }) => {
   let divs;
   if (drawCols) {
     divs = new Array(drawCols).fill();

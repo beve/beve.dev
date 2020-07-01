@@ -7,19 +7,33 @@ import Projects from "../blocks/projects";
 import Contact from "../blocks/contact";
 import { initializeApollo } from '../lib/apolloClient'
 import { gql } from 'apollo-boost';
+import { Transition } from "react-transition-group"
+import gsap from "gsap/gsap-core";
 
-const IndexPage = ({ projects }) => {
+const enterHandle = (node) => {
+  gsap.set(node, { pointerEvents: 'all' })
+  gsap.set(node, { opacity: 1 })
+}
+
+const exitHandle = (node) => {
+  gsap.set(node, { pointerEvents: 'none' })
+  gsap.to(node, { opacity: 0, duration: 0, delay: 1 })
+}
+
+const IndexPage = ({ in: inProp, projects }) => {
   return (
-    <>
-      <Head>
-        <meta title="Accueil" />
-      </Head>
-      <Landing />
-      <Skills />
-      <Projects data={projects} />
-      <Customers />
-      <Contact />
-    </>
+    <Transition timeout={{ enter: 0, exit: 1000 }} in={inProp} onEnter={enterHandle} onExit={exitHandle}>
+      <div>
+        <Head>
+          <meta title="Accueil" />
+        </Head>
+        <Landing />
+        <Skills />
+        <Projects data={projects} />
+        <Customers />
+        <Contact />
+      </div>
+    </Transition>
   )
 };
 
