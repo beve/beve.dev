@@ -37,9 +37,13 @@ export default function ProjectPage({ data, in: inProp }) {
     const illustrationsMask = node.querySelector('.illustrationsMask')
     const cols = node.querySelectorAll('.cols');
     const sheet = node.querySelector('.sheet')
+    const iconClose = node.querySelector('.iconClose');
+    const iconDown = node.querySelector('.iconDown');
     const tl = gsap.timeline()
     const c = [].slice.call(cols);
     gsap.set(sheet, { opacity: 0 })
+    gsap.set(iconClose, { opacity: 0})
+    gsap.set(iconDown, { opacity: 0})
     tl.to(illustrationsMask, { y: 0, duration: 0.4 })
     tl.to(sheetMask, { y: 0, duration: 0.4 }, '-=0.3')
     tl.set('.indexPage', { opacity: 0 })
@@ -50,6 +54,8 @@ export default function ProjectPage({ data, in: inProp }) {
     tl.to(illustrations, { zIndex: 4, duration: 0 }, 'cols');
     tl.fromTo(rects, { y: '100vh' }, { stagger: 0.15, y: 0, duration: 1.8, ease: 'ease.out' }, 'cols-=1.4')
     tl.to(sheetMask, { x: '-100%', duration: 0.3, ease: 'ease.out' }, '-=0.4')
+    tl.to(iconClose, {opacity: 1, duration: 0.4}, '-=0.2');
+    tl.to(iconDown, {opacity: 1, duration: 0.4}, '<');
   }
 
   const exitHandle = (node) => {
@@ -59,19 +65,23 @@ export default function ProjectPage({ data, in: inProp }) {
     const sheet = node.querySelector('.sheet')
     const cols = node.querySelectorAll('.cols');
     const tl = gsap.timeline()
+    const iconClose = node.querySelector('.iconClose');
+    const iconDown = node.querySelector('.iconDown');
     tl.fromTo(illustrationsMask, { zIndex: 10, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 })
     tl.fromTo(sheetMask, { zIndex: 10, x: 0, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 }, '-=0.3')
     tl.set('.indexPage', { opacity: 1 }, '-=0.2')
     tl.set(sheet, { opacity: 0 }, '-=0.2')
     tl.set(cols, {borderColor: 'transparent'}, '-=0.2')
     tl.set(illustrations, { opacity: 0 }, '-=0.2')
-    tl.to(illustrationsMask, { y: '-100vh', ease: 'ease.in', duration: 0.4 }, '-=0.2');
-    tl.to(sheetMask, { y: '-100vh', duration: 0.4 }, '-=0.4');
+    tl.to(iconClose, {opacity: 0, duration: 0.4}, '-=0.2');
+    tl.to(iconDown, {opacity: 0, duration: 0.4}, '-=0.2');
+    tl.to(illustrationsMask, { y: '-100vh', ease: 'ease.in', duration: 0.4 }, '-=0.4');
+    tl.to(sheetMask, { y: '-100vh', duration: 0.4 }, '-=0.3');
   }
 
   return (
     <>
-      <Transition timeout={{ enter: 0, exit: 600 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
+      <Transition timeout={{ enter: 0, exit: 800 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
         <div className="project">
           <Grid
             style={{
@@ -126,7 +136,7 @@ export default function ProjectPage({ data, in: inProp }) {
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </div>
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <a className="iconClose" data-cursor="big">
                 <Close />
               </a>
