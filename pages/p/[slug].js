@@ -35,10 +35,12 @@ export default function ProjectPage({ data, in: inProp }) {
     const sheetMask = node.querySelector('.sheetMask')
     const illustrations = node.querySelector('.illustrations')
     const illustrationsMask = node.querySelector('.illustrationsMask')
-    const cols = node.querySelectorAll('.cols');
+    const cols = node.querySelectorAll('.cols')
     const sheet = node.querySelector('.sheet')
-    const iconClose = node.querySelector('.iconClose');
-    const iconDown = node.querySelector('.iconDown');
+    const iconClose = node.querySelector('.iconClose')
+    const iconDown = node.querySelector('.iconDown')
+    const beve = document.querySelector('.beve')
+    const indexPage = document.querySelector('.indexPage')
     const tl = gsap.timeline()
     const c = [].slice.call(cols);
     gsap.set(sheet, { opacity: 0 })
@@ -46,7 +48,7 @@ export default function ProjectPage({ data, in: inProp }) {
     gsap.set(iconDown, { opacity: 0})
     tl.to(illustrationsMask, { y: 0, duration: 0.4 })
     tl.to(sheetMask, { y: 0, duration: 0.4 }, '-=0.3')
-    tl.set('.indexPage', { opacity: 0 })
+    tl.set(indexPage, { opacity: 0 })
     tl.to(c.slice(0, 7), { stagger: 0.07, y: 0, borderColor: '#ebebeb', duration: 0.3, ease: 'ease.out' }, '-=0.5')
     tl.add('cols')
     tl.to(c.slice(7, 14), { borderColor: '#ccc', duration: 0.3 })
@@ -67,9 +69,11 @@ export default function ProjectPage({ data, in: inProp }) {
     const tl = gsap.timeline()
     const iconClose = node.querySelector('.iconClose');
     const iconDown = node.querySelector('.iconDown');
+    const beve = document.querySelector('.beve')
+    const indexPage = document.querySelector('.indexPage')
     tl.fromTo(illustrationsMask, { zIndex: 10, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 })
     tl.fromTo(sheetMask, { zIndex: 10, x: 0, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 }, '-=0.3')
-    tl.set('.indexPage', { opacity: 1 }, '-=0.2')
+    tl.set(indexPage, { opacity: 1 }, '-=0.2')
     tl.set(sheet, { opacity: 0 }, '-=0.2')
     tl.set(cols, {borderColor: 'transparent'}, '-=0.2')
     tl.set(illustrations, { opacity: 0 }, '-=0.2')
