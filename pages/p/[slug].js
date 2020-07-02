@@ -38,41 +38,40 @@ export default function ProjectPage({ data, in: inProp }) {
     const sheet = node.querySelector('.sheet')
     const tl = gsap.timeline()
     const c = [].slice.call(cols);
+    gsap.set(sheet, { opacity: 0 })
     tl.to(illustrationsMask, { y: 0, duration: 0.4 })
     tl.to(sheetMask, { y: 0, duration: 0.4 }, '-=0.3')
+    tl.set('.indexPage', { opacity: 0 })
     tl.to(c.slice(0, 7), { stagger: 0.07, y: 0, borderColor: '#ebebeb', duration: 0.3, ease: 'ease.out' }, '-=0.5')
     tl.add('cols')
     tl.to(c.slice(7, 14), { borderColor: '#ccc', duration: 0.3 })
-    tl.to(illustrations, { zIndex: 3, duration: 0 }, 'cols');
+    tl.to(sheet, { opacity: 1, duration: 0 }, 'cols')
+    tl.to(illustrations, { zIndex: 4, duration: 0 }, 'cols');
     tl.fromTo(rects, { y: '100vh' }, { stagger: 0.15, y: 0, duration: 1.8, ease: 'ease.out' }, 'cols-=1.4')
     tl.to(sheetMask, { x: '-100%', duration: 0.3, ease: 'ease.out' }, '-=0.4')
   }
 
   const exitHandle = (node) => {
-    const rects = node.getElementsByTagName('rect')
+    const whiteMask = node.querySelector('.whiteMask')
     const sheetMask = node.querySelector('.sheetMask')
     const illustrations = node.querySelector('.illustrations')
     const illustrationsMask = node.querySelector('.illustrationsMask')
-    const cols = node.querySelectorAll('.cols');
     const sheet = node.querySelector('.sheet')
     const tl = gsap.timeline()
-    tl.fromTo(sheetMask, { y: '-100vh' }, { y: '100vh', ease: 'ease.out', duration: 0.8 })
-    tl.fromTo(illustrationsMask, { y: '-100vh' }, { y: '100vh', ease: 'ease.out', duration: 0.8 })
-    // gsap.to(node, {opacity: 0}, 0.8)
-    // console.log(node);
-    // const rects = node.gjetElementsByTagName('rect');
-    // gsap.to(rects, { stagger: 0.1, height: 0, duration: 1, ease: 'none' })
-    // gsap.set(rects, { scaleY: 0})
-    // gsap.to(rects, { scaleY: 0, duratioon: 1 })
-    // gsap.to(node, {opacity: 0, duration: 1})
-    // tl.progress(100).reverse()
-    // console.log('reverse')
-    // tl.progress(0).reverse().play()
+    tl.fromTo(illustrationsMask, { zIndex: 10, y: '-100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 })
+    tl.fromTo(sheetMask, { zIndex: 10, x: 0, y: '-100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 }, '-=0.3')
+    tl.set(whiteMask, { opacity: 0.8 }, '-=0.3')
+    tl.set('.indexPage', { opacity: 1 }, '-=0.3')
+    tl.set(sheet, { opacity: 0 })
+    tl.set(illustrations, { opacity: 0 }, '-=0.2')
+    tl.to(illustrationsMask, { y: '100vh', ease: 'ease.in', duration: 0.4 }, '-=0.2');
+    tl.to(sheetMask, { y: '100vh', duration: 0.4 }, '-=0.1');
+    console.log(tl.duration())
   }
 
   return (
     <>
-      <Transition timeout={{ enter: 0, exit: 500 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
+      <Transition timeout={{ enter: 0, exit: 900 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
         <div className="project">
           <Grid
             style={{
@@ -126,6 +125,7 @@ export default function ProjectPage({ data, in: inProp }) {
                 className="content"
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
+              <div className="whiteMask"></div>
             </div>
             <div className="iconClose">
               <Close />
@@ -165,12 +165,22 @@ export default function ProjectPage({ data, in: inProp }) {
               border-color: transparent;
             }
 
+            .whiteMask {
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 50%;
+              height: 200px;
+              background: #fff;
+              opacity: 0;
+            }
+
             .illustrationsMask {
               grid-row: 1;
               grid-column: 1 / span 7;
               background-color: ${theme.color.primary};
-              border-right: 1px solid transparent;
-              transform: translateY(-100%)
+              transform: translateY(-100%);
+              z-index: 3;
             }
 
             .illustrations {
@@ -192,7 +202,7 @@ export default function ProjectPage({ data, in: inProp }) {
               grid-row: 1;
               grid-column: 8 / span 7;
               background-color: ${theme.color.primary};
-              z-index: 1;
+              z-index: 3;
               transform: translateY(-100%)
             }
 
