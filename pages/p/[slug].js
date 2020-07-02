@@ -30,23 +30,34 @@ export default function ProjectPage({ data, in: inProp }) {
   const bandWidth = 100 / (BANDS_NB + 0.5);
 
   const enterHandle = (node) => {
-    const tl = gsap.timeline()
     const rects = node.getElementsByTagName('rect')
     const sheetMask = node.querySelector('.sheetMask')
     const illustrations = node.querySelector('.illustrations')
     const illustrationsMask = node.querySelector('.illustrationsMask')
     const cols = node.querySelectorAll('.cols');
     const sheet = node.querySelector('.sheet')
+    const tl = gsap.timeline()
+    const c = [].slice.call(cols);
     tl.to(illustrationsMask, { y: 0, duration: 0.4 })
-    tl.to(sheetMask, { x: 0, duration: 0.4 }, '-=0.3')
-    tl.to(cols, { stagger: 0.1, y: 0, borderColor: '#ccc', duration: 0.8, ease: 'ease.out'}, '<')
-    tl.to(rects, { stagger: 0.15, y: 0, opacity: 1, duration: 0.8, ease: 'ease.out' }, '<0.4')
-    tl.to(sheet, { opacity: 1, duration: 0 }, '<')
-    tl.to(illustrations, {zIndex: 10, duration: 0}, '<');
-    tl.to(sheetMask, { x: '-100%', ease: 'ease.out', duration: 0.3 }, '<1.2')
+    tl.to(sheetMask, { y: 0, duration: 0.4 }, '-=0.3')
+    tl.to(c.slice(0, 7), { stagger: 0.07, y: 0, borderColor: '#ebebeb', duration: 0.3, ease: 'ease.out' }, '-=0.5')
+    tl.add('cols')
+    tl.to(c.slice(7, 14), { borderColor: '#ccc', duration: 0.3 })
+    tl.to(illustrations, { zIndex: 3, duration: 0 }, 'cols');
+    tl.fromTo(rects, { y: '100vh' }, { stagger: 0.15, y: 0, duration: 1.8, ease: 'ease.out' }, 'cols-=1.4')
+    tl.to(sheetMask, { x: '-100%', duration: 0.3, ease: 'ease.out' }, '-=0.4')
   }
 
   const exitHandle = (node) => {
+    const rects = node.getElementsByTagName('rect')
+    const sheetMask = node.querySelector('.sheetMask')
+    const illustrations = node.querySelector('.illustrations')
+    const illustrationsMask = node.querySelector('.illustrationsMask')
+    const cols = node.querySelectorAll('.cols');
+    const sheet = node.querySelector('.sheet')
+    const tl = gsap.timeline()
+    tl.fromTo(sheetMask, { y: '-100vh' }, { y: '100vh', ease: 'ease.out', duration: 0.8 })
+    tl.fromTo(illustrationsMask, { y: '-100vh' }, { y: '100vh', ease: 'ease.out', duration: 0.8 })
     // gsap.to(node, {opacity: 0}, 0.8)
     // console.log(node);
     // const rects = node.gjetElementsByTagName('rect');
@@ -54,11 +65,14 @@ export default function ProjectPage({ data, in: inProp }) {
     // gsap.set(rects, { scaleY: 0})
     // gsap.to(rects, { scaleY: 0, duratioon: 1 })
     // gsap.to(node, {opacity: 0, duration: 1})
+    // tl.progress(100).reverse()
+    // console.log('reverse')
+    // tl.progress(0).reverse().play()
   }
 
   return (
     <>
-      <Transition timeout={{ enter: 0, exit: 1000 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
+      <Transition timeout={{ enter: 0, exit: 500 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
         <div className="project">
           <Grid
             style={{
@@ -66,7 +80,7 @@ export default function ProjectPage({ data, in: inProp }) {
             }}
             drawCols={14}
             colsCss={{
-              zIndex: 1,
+              zIndex: 5,
               opacity: 0.3,
               height: "100vh",
             }}
@@ -151,10 +165,6 @@ export default function ProjectPage({ data, in: inProp }) {
               border-color: transparent;
             }
 
-            rect {
-              transform: translateY(100vh)
-            }
-
             .illustrationsMask {
               grid-row: 1;
               grid-column: 1 / span 7;
@@ -183,13 +193,12 @@ export default function ProjectPage({ data, in: inProp }) {
               grid-column: 8 / span 7;
               background-color: ${theme.color.primary};
               z-index: 1;
-              transform: translateX(100vw)
+              transform: translateY(-100%)
             }
 
             .sheet {
               grid-row: 1;
               grid-column: 9 / span 7;
-              opacity: 0;
               padding-top: 220px;
               font-weight: 300;
               overflow-y: auto;
