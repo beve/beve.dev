@@ -52,26 +52,26 @@ export default function ProjectPage({ data, in: inProp }) {
   }
 
   const exitHandle = (node) => {
-    const whiteMask = node.querySelector('.whiteMask')
     const sheetMask = node.querySelector('.sheetMask')
     const illustrations = node.querySelector('.illustrations')
     const illustrationsMask = node.querySelector('.illustrationsMask')
     const sheet = node.querySelector('.sheet')
+    const cols = node.querySelectorAll('.cols');
     const tl = gsap.timeline()
-    tl.fromTo(illustrationsMask, { zIndex: 10, y: '-100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 })
-    tl.fromTo(sheetMask, { zIndex: 10, x: 0, y: '-100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 }, '-=0.3')
-    tl.set(whiteMask, { opacity: 0.8 }, '-=0.3')
-    tl.set('.indexPage', { opacity: 1 }, '-=0.3')
-    tl.set(sheet, { opacity: 0 })
+    tl.fromTo(illustrationsMask, { zIndex: 10, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 })
+    tl.fromTo(sheetMask, { zIndex: 10, x: 0, y: '100vh' }, { y: 0, ease: 'ease.out', duration: 0.4 }, '-=0.3')
+    tl.set('.indexPage', { opacity: 1 }, '-=0.2')
+    tl.set(sheet, { opacity: 0 }, '-=0.2')
+    tl.set(cols, {borderColor: 'transparent'}, '-=0.2')
     tl.set(illustrations, { opacity: 0 }, '-=0.2')
-    tl.to(illustrationsMask, { y: '100vh', ease: 'ease.in', duration: 0.4 }, '-=0.2');
-    tl.to(sheetMask, { y: '100vh', duration: 0.4 }, '-=0.1');
+    tl.to(illustrationsMask, { y: '-100vh', ease: 'ease.in', duration: 0.4 }, '-=0.2');
+    tl.to(sheetMask, { y: '-100vh', duration: 0.4 }, '-=0.4');
     console.log(tl.duration())
   }
 
   return (
     <>
-      <Transition timeout={{ enter: 0, exit: 900 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
+      <Transition timeout={{ enter: 0, exit: 600 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
         <div className="project">
           <Grid
             style={{
@@ -125,12 +125,11 @@ export default function ProjectPage({ data, in: inProp }) {
                 className="content"
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
-              <div className="whiteMask"></div>
             </div>
-            <div className="iconClose">
+            <div className="iconClose" data-cursor="big">
               <Close />
             </div>
-            <div className="iconDown">
+            <div className="iconDown" data-cursor="big">
               <Down />
             </div>
           </Grid>
@@ -160,19 +159,10 @@ export default function ProjectPage({ data, in: inProp }) {
             max-width: 1440px;
             left: 50%;
             transform: translate(-50%, 0);
+            z-index: 1;
 
             :global(.cols) {
               border-color: transparent;
-            }
-
-            .whiteMask {
-              position: absolute;
-              bottom: 0;
-              left: 50%;
-              width: 50%;
-              height: 200px;
-              background: #fff;
-              opacity: 0;
             }
 
             .illustrationsMask {
@@ -241,7 +231,6 @@ export default function ProjectPage({ data, in: inProp }) {
               }
             }
             .iconClose {
-              opacity: 0;
               grid-row: 1;
               grid-column: 14;
               align-self: start;
@@ -250,7 +239,6 @@ export default function ProjectPage({ data, in: inProp }) {
               width: 40px;
             }
             .iconDown {
-              opacity: 0;
               grid-row: 1;
               grid-column: 8;
               width: 15px;

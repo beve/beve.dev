@@ -70,7 +70,8 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
           // Anim
           gsap.to(innerCursor.current, { scale: growRatio, strokeWidth: '2px', fillOpacity: 0, stroke: '#e73c36', transformOrigin: 'center center', duration: 0.3 })
           gsap.to(outerCursor.current, { scale: growRatio, transformOrigin: 'center center', duration: 0.3 })
-          gsap.to(outerCursorCircle.current, { fill: 'url(#myGradient)', fillOpacity: 0.2, duration: 0.3 })
+          // gsap.to(outerCursorCircle.current, { fill: 'url(#myGradient)', fillOpacity: 0.2, duration: 0.3 })
+          gsap.to(outerCursorCircle.current, { fill: 'none', fillOpacity: 0.2, duration: 0.3 })
           const bounds = el.getBoundingClientRect();
           const elMidX = bounds.x + bounds.width / 2;
           const elMidY = bounds.y + bounds.height / 2;
@@ -154,6 +155,7 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
             circle {
               fill-opacity: 0.1;
               stroke: #ccc;
+              stroke-width: 2px;
               fill: #000;
             }
           }
