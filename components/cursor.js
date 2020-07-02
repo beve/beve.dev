@@ -12,6 +12,7 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
   const derivedCursorSize = cursorSize * growRatio;
   const derivedGrowRatio = 1 / growRatio;
 
+  const reactiveLinks = useRef([]);
 
   // Hide main cursor
   useEffect(() => {
@@ -53,16 +54,19 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
     };
   }, [cursorSize, hideCursor, target.current]);
 
+  // Only register triggers if not already added
   useEffect(() => {
     document.querySelectorAll('[data-cursor]').forEach(function (el) {
+      if (reactiveLinks.current.indexOf(el) !== -1) {
+        return
+      }
+
+      // Register
+      reactiveLinks.current.push(el);
+
+      // Threat
       const cursorType = el.getAttribute('data-cursor');
 
-      if (cursorType === 'around') {
-        el.addEventListener('mouseenter', () => {
-        });
-        el.addEventListener('mouseleave', () => {
-        });
-      }
       if (cursorType === 'big') {
         el.addEventListener('mouseover', (e) => {
           // Target
@@ -98,7 +102,7 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
         });
       }
     });
-  }, []);
+  });
 
   return (
     <>

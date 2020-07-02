@@ -7,7 +7,6 @@ import Menu from "../components/menu"
 import Grid from "../components/grid"
 import Cursor from "../components/cursor"
 import ContactInfos from "../components/contactInfos"
-import Reveal from "../components/reveal"
 import theme from "../theme"
 
 export default function App({ Component, pageProps, router }) {

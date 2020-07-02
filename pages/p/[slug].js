@@ -1,11 +1,12 @@
 import React from 'react'
+import Link from "next/link"
+import { gql } from "apollo-boost";
+import { Transition } from 'react-transition-group'
+import gsap from "gsap"
 import Grid from "../../components/grid";
 import Down from "../../components/down";
 import Close from "../../components/close";
 import { initializeApollo } from "../../lib/apolloClient";
-import { gql } from "apollo-boost";
-import { Transition } from 'react-transition-group'
-import gsap from "gsap"
 import theme from "../../theme"
 
 export default function ProjectPage({ data, in: inProp }) {
@@ -66,7 +67,6 @@ export default function ProjectPage({ data, in: inProp }) {
     tl.set(illustrations, { opacity: 0 }, '-=0.2')
     tl.to(illustrationsMask, { y: '-100vh', ease: 'ease.in', duration: 0.4 }, '-=0.2');
     tl.to(sheetMask, { y: '-100vh', duration: 0.4 }, '-=0.4');
-    console.log(tl.duration())
   }
 
   return (
@@ -126,9 +126,11 @@ export default function ProjectPage({ data, in: inProp }) {
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </div>
-            <div className="iconClose" data-cursor="big">
-              <Close />
-            </div>
+            <Link href="/">
+              <a className="iconClose" data-cursor="big">
+                <Close />
+              </a>
+            </Link>
             <div className="iconDown" data-cursor="big">
               <Down />
             </div>
@@ -237,6 +239,7 @@ export default function ProjectPage({ data, in: inProp }) {
               margin-top: 180px;
               justify-self: center;
               width: 40px;
+              z-index: 1;
             }
             .iconDown {
               grid-row: 1;
@@ -245,6 +248,7 @@ export default function ProjectPage({ data, in: inProp }) {
               align-self: end;
               justify-self: center;
               margin-bottom: 30px;
+              z-index: 1;
             }
           }
         `}
