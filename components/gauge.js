@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { gsap } from "gsap";
-import useIntersection from "../hooks/useIntersection";
 import useTimeline from "../hooks/useTimeline";
 import CustomEase from "gsap/CustomEase";
-import DrawSVG from "gsap/DrawSVGPlugin";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import theme from "../theme/index"
 gsap.registerPlugin(CustomEase);
-gsap.registerPlugin(DrawSVG);
-gsap.registerPlugin(ScrollTrigger);
 
 const Gauge = ({
   style,
@@ -17,7 +12,9 @@ const Gauge = ({
   strokeWidth = 7,
   label = "React",
 }) => {
-  const [computedAnimatedValue, set] = useState(0);
+  // const [computedAnimatedValue, set] = useState(0);
+
+  /*
 
   const [ref, observer] = useIntersection(() => {
     timeline.current.play();
@@ -47,13 +44,14 @@ const Gauge = ({
       );
     }
   );
+  */
 
   return (
     <div style={style} className="gaugeContainer">
       <svg
-        ref={ref}
         viewBox={`0 0 ${(radius * 2 + strokeWidth * 2)} ${(radius * 2 + strokeWidth * 2) + 20}`}
         className="gauge"
+        data-value={value}
       >
         <circle
           cx={radius + strokeWidth}
@@ -68,7 +66,7 @@ const Gauge = ({
           dy={radius + 2}
           className="text1"
         >
-          {computedAnimatedValue}
+          {value}
         </text>
         <text x="50%" y={radius + strokeWidth + 1} dx="7" className="text2">
           %

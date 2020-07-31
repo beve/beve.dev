@@ -8,18 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/react-hooks": "^3.1.5",
+    "@apollo/react-hooks": "^4.0.0",
     "apollo-boost": "^0.4.9",
     "babel-plugin-graphql-tag": "^2.5.0",
-    "graphql": "^15.1.0",
-    "gsap": "^3.3.4",
-    "next": "9.4.4",
-    "next-transpile-modules": "^3.3.0",
+    "graphql": "^15.3.0",
+    "gsap": "^3.4.2",
+    "next": "9.5.1",
+    "next-transpile-modules": "^4.0.2",
     "node-sass": "^4.14.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-transition-group": "^4.4.1",
-    "sass": "^1.26.9",
+    "sass": "^1.26.10",
     "styled-jsx-plugin-sass": "^1.0.0"
   }
 }

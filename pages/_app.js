@@ -1,20 +1,18 @@
-import Link from "next/link"
-import { ApolloProvider } from '@apollo/react-hooks'
-import { useApollo } from "../lib/apolloClient"
-import { TransitionGroup } from "react-transition-group"
-import Beve from "../components/beve"
-import Menu from "../components/menu"
-import Grid from "../components/grid"
-import Cursor from "../components/cursor"
-import ContactInfos from "../components/contactInfos"
-import theme from "../theme"
+import Link from "next/link";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { useApollo } from "../lib/apolloClient";
+import { TransitionGroup } from "react-transition-group";
+import Beve from "../components/beve";
+import Menu from "../components/menu";
+import Grid from "../components/grid";
+import Cursor from "../components/cursor";
+import ContactInfos from "../components/contactInfos";
+import theme from "../theme";
 
 export default function App({ Component, pageProps, router }) {
-
-  const apolloClient = useApollo(pageProps.initialApolloState)
+  const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (
-
     <ApolloProvider client={apolloClient}>
       <Cursor />
       <div>
@@ -28,9 +26,7 @@ export default function App({ Component, pageProps, router }) {
         </Grid>
         <main className="mainGrid">
           <TransitionGroup component={null}>
-            {/* <Reveal key={router.pathname} pathname={router.asPath}> */}
-              <Component key={router.pathname} {...pageProps} />
-            {/* </Reveal> */}
+            <Component key={router.pathname} {...pageProps} />
           </TransitionGroup>
         </main>
         <Grid className="bottomGrid">

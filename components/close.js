@@ -1,6 +1,6 @@
 import React from "react"
 
-export default (props) => {
+const Close = (props) => {
   return (
     <svg viewBox="0 0 30 30" {...props}>
       <path
@@ -13,3 +13,5 @@ export default (props) => {
     </svg>
   )
 }
+
+export default Close

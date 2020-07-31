@@ -1,9 +1,6 @@
-import React, { useRef, useState } from "react";
-import useIntersection from "../hooks/useIntersection";
-import useTimeline from "../hooks/useTimeline";
 import theme from "../theme/index"
 
-export default ({
+const Bar = ({
   value,
   barHeight = 5,
   width = 195,
@@ -11,6 +8,8 @@ export default ({
 }) => {
   const halfHeight = barHeight / 2;
   const computedValue = (width * value) / 100;
+
+  /*
   const valRef = useRef();
   const pathRef = useRef();
   const [computedAnimatedValue, set] = useState(0);
@@ -69,10 +68,11 @@ export default ({
       );
     }
   );
+  */
 
   return (
     <div className="barContainer">
-      <svg ref={ref} viewBox={`0 0 ${width + barHeight} 27`} className="bar">
+      <svg viewBox={`0 0 ${width + barHeight} 27`} className="bar" data-value={value}>
         <defs>
           <path
             id="labelPath"
@@ -86,14 +86,13 @@ export default ({
           />{" "}
           <path
             className="pathAnimated"
-            ref={pathRef}
             d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />
         </g>
-        <g ref={valRef} style={{ opacity: 0 }}>
+        <g>
           <text dy="0" className="text1">
             <textPath href="#labelPath" startOffset={computedValue - 10}>
-              {computedAnimatedValue}
+              {value}
             </textPath>
           </text>
           <text dy="-6" className="text2">
@@ -144,3 +143,5 @@ export default ({
     </div>
   );
 };
+
+export default Bar

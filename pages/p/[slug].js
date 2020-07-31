@@ -345,6 +345,6 @@ export async function getStaticProps({ params }) {
       initialApolloState: apolloClient.cache.extract(),
       data: result.data.projects.edges[0].node,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 }
