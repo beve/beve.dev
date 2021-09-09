@@ -3,6 +3,7 @@ import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import InertiaPlugin from "gsap/InertiaPlugin";
 import useTimeline from "../hooks/useTimeline";
+import styles from "./slider.module.scss"
 
 export default (props) => {
   const ref = useRef(null);
@@ -56,7 +57,7 @@ export default (props) => {
   return (
     <>
       <div
-        className="slider"
+        className={`slider ${styles.slider}`}
         role="button"
         onMouseEnter={onMouseEnterHandle}
         onMouseLeave={onMouseLeaveHandle}

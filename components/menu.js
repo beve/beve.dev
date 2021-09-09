@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link"
+import styles from "./menu.module.scss"
 
 const Menu = () => {
   return (
     <>
-      <div className="menu">
+      <div className={`menu ${styles.menu}`}>
         <Link href="/" scroll={false}>
           <a data-cursor="big">Accueil</a>
         </Link>

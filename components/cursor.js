@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import styles from "./cursor.module.scss"
 
 const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
 
@@ -106,10 +107,10 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
 
   return (
     <>
-      <svg ref={innerCursor} className="innerCursor" id="innerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
+      <svg ref={innerCursor} className={styles.innerCursor} id="innerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
         <circle r="100" cx="101" cy="101" />
       </svg>
-      <svg ref={outerCursor} className="outerCursor" id="outerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
+      <svg ref={outerCursor} className={styles.outerCursor} id="outerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
         <defs>
           <filter id="blurMe">
             <feGaussianBlur in="SourceGraphic" stdDeviation="5" />

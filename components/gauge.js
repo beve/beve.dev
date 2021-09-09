@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { gsap } from "gsap";
 import useTimeline from "../hooks/useTimeline";
 import CustomEase from "gsap/CustomEase";
+import styles from "./gauge.module.scss"
 gsap.registerPlugin(CustomEase);
 
 const Gauge = ({
@@ -46,10 +47,10 @@ const Gauge = ({
   */
 
   return (
-    <div style={style} className="gaugeContainer">
+    <div style={style} className={`gaugeContainer ${styles.gaugeContainer}`}>
       <svg
         viewBox={`0 0 ${(radius * 2 + strokeWidth * 2)} ${(radius * 2 + strokeWidth * 2) + 20}`}
-        className="gauge"
+        className={`gauge ${styles.gauge}`}
         data-value={value}
       >
         <circle
@@ -64,14 +65,14 @@ const Gauge = ({
           textAnchor="middle"
           dx="-2"
           dy={radius + 2}
-          className="text1"
+          className={`text1 ${styles.text1}`}
         >
           {value}
         </text>
-        <text x="50%" y={radius + strokeWidth + 1} dx="7" className="text2">
+        <text x="50%" y={radius + strokeWidth + 1} dx="7" className={`text2 ${styles.text2}`}>
           %
         </text>
-        <text x="50%" y={radius * 2 + strokeWidth * 2 + 14} textAnchor="middle" className="text3">
+        <text x="50%" y={radius * 2 + strokeWidth * 2 + 14} textAnchor="middle" className={`text3 ${styles.text3}`}>
           {label}
         </text>
       </svg>

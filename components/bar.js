@@ -1,3 +1,5 @@
+import styles from "./bar.module.scss"
+
 const Bar = ({
   value,
   barHeight = 5,
@@ -69,39 +71,39 @@ const Bar = ({
   */
 
   return (
-    <div className="barContainer">
-      <svg viewBox={`0 0 ${width + barHeight} 27`} className="bar" data-value={value}>
+    <div className={`barContainer ${styles.barContainer}`}>
+      <svg viewBox={`0 0 ${width + barHeight} 27`} data-value={value}>
         <defs>
           <path
             id="labelPath"
-            style={{strokeWidth: barHeight}}
+            strokeWidth={barHeight}
             d={`M${halfHeight},${15 - halfHeight} H${computedValue + 100}`}
           />
         </defs>
         <g fill="none">
           <path
-            className="pathPath"
+            className={`pathPath ${styles.pathPath}`}
             d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />{" "}
           <path
-            className="pathAnimated"
-            style={{width, stroke: blue, strokeWidth: barHeight}}
+            className={`pathAnimated ${styles.pathAnimated}`} stroke="var(--main-color-secondary)" strokeWidth={barHeight}
+            style={{width}}
             d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />
         </g>
         <g>
-          <text dy="0" className="text1">
+          <text dy="0" className={`text1 ${styles.text1}`}>
             <textPath href="#labelPath" startOffset={computedValue - 10}>
               {value}
             </textPath>
           </text>
-          <text dy="-6" className="text2">
+          <text dy="-6" className={`text2 ${styles.text2}`}>
             <textPath href="#labelPath" startOffset={computedValue + 7}>
               %
             </textPath>
           </text>
         </g>
-        <text className="text3">
+        <text className={`text3 ${styles.text3}`}>
           <textPath href="#labelPath" startOffset={0}>
             {label}
           </textPath>

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import Link from "next/link"
+import Link from "next/link";
 import gsap from "gsap";
+import styles from "./homeProject.module.scss";
 
 export default ({ style, name, illustration, logo, slug }) => {
   const maskRef = useRef(null);
@@ -17,8 +18,8 @@ export default ({ style, name, illustration, logo, slug }) => {
     gsap.set(el, { x: e.clientX - left, y: e.clientY - top, opacity: 0.9 });
     gsap.set("#innerCursor", { visibility: "hidden" });
     gsap.set("#outerCursor", { visibility: "hidden" });
-    tl.fromTo(el, { scale: 1 }, { scale, duration: 0.3, ease: 'power1.in' });
-    tl.to(logoRef.current, 0.3, { opacity: 1 }, '<0.05');
+    tl.fromTo(el, { scale: 1 }, { scale, duration: 0.3, ease: "power1.in" });
+    tl.to(logoRef.current, 0.3, { opacity: 1 }, "<0.05");
   };
 
   const handleMouseLeave = (e) => {
@@ -30,7 +31,7 @@ export default ({ style, name, illustration, logo, slug }) => {
     gsap.set("#innerCursor", { visibility: "visible" });
     gsap.set("#outerCursor", { visibility: "visible" });
     tl.to(el, 0.5, { scale: 0 });
-    tl.to(logoRef.current, 0.3, { opacity: 0 }, '<');
+    tl.to(logoRef.current, 0.3, { opacity: 0 }, "<");
   };
 
   const handleClick = () => {
@@ -41,7 +42,7 @@ export default ({ style, name, illustration, logo, slug }) => {
   return (
     <>
       <Link href="/p/[slug]" as={`/p/${slug}`} scroll={false}>
-        <div className="homeProject" style={style}>
+        <div className={`homeProject ${styles.homeProject}`} style={style}>
           <div
             tabIndex={0}
             role="button"
@@ -50,11 +51,13 @@ export default ({ style, name, illustration, logo, slug }) => {
             onKeyDown={handleClick}
             onClick={handleClick}
           >
-            <img src={illustration} className="illustration" />
-            <img ref={logoRef} src={logo} className="logo" />
-            <b><span ref={maskRef}></span></b>
+            <img src={illustration} className={`illustration ${styles.illustration}`} />
+            <img ref={logoRef} src={logo} className={`logo ${styles.logo}`} />
+            <b>
+              <span ref={maskRef}></span>
+            </b>
           </div>
-          <div className="name">{name}</div>
+          <div className={`name ${styles.name}`}>{name}</div>
         </div>
       </Link>
     </>

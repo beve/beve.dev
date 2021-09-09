@@ -7,7 +7,7 @@ import Grid from "../../components/grid";
 import Down from "../../components/down";
 import Close from "../../components/close";
 import { initializeApollo } from "../../lib/apolloClient";
-import theme from "../../theme"
+import styles from "./slug.module.scss"
 
 export default function ProjectPage({ data, in: inProp }) {
 
@@ -86,7 +86,7 @@ export default function ProjectPage({ data, in: inProp }) {
   return (
     <>
       <Transition timeout={{ enter: 0, exit: 800 }} in={inProp} onEnter={enterHandle} onExit={exitHandle} unmountOnExit={true}>
-        <div className="project">
+        <div className={`project ${styles.project}`}>
           <Grid
             style={{
               height: `100vh`,
@@ -97,11 +97,11 @@ export default function ProjectPage({ data, in: inProp }) {
               opacity: 0.3,
               height: "100vh",
             }}
-            className="projectGrid"
+            className={`projectGrid ${styles.projectGrid}`}
           >
-            <div className="illustrationsMask"></div>
-            <div className="illustrations">
-              <div className="slider">
+            <div className={`illustrationsMask ${styles.illustrationsMask}`}></div>
+            <div className={`illustrations ${styles.illustrations}`}>
+              <div className={`slider ${styles.slider}`}>
                 {images.map((image) => {
                   return (
                     <img
@@ -114,10 +114,10 @@ export default function ProjectPage({ data, in: inProp }) {
                 })}
               </div>
             </div>
-            <div className="sheetMask"></div>
-            <div className="sheet">
-              <div className="title">{title}</div>
-              <div className="infos">
+            <div className={`sheetMask ${styles.sheetMask}`}></div>
+            <div className={`sheet ${styles.sheet}`}>
+              <div className={`title ${styles.title}`}>{title}</div>
+              <div className={`infos ${styles.infos}`}>
                 <div>
                   <span>Contexte:</span>
                   {context}
@@ -136,16 +136,16 @@ export default function ProjectPage({ data, in: inProp }) {
                 </div>
               </div>
               <div
-                className="content"
+                className={`content ${styles.content}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </div>
             <Link href="/" scroll={false}>
-              <a className="iconClose" data-cursor="big">
+              <a className={`iconClose ${styles.iconClose}`} data-cursor="big">
                 <Close />
               </a>
             </Link>
-            <div className="iconDown" data-cursor="big">
+            <div className={`iconDown ${styles.iconDown}`} data-cursor="big">
               <Down />
             </div>
           </Grid>
@@ -164,109 +164,6 @@ export default function ProjectPage({ data, in: inProp }) {
           </svg>
         </div>
       </Transition>
-      <style jsx>
-        {`
-          .project {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            max-width: 1440px;
-            left: 50%;
-            transform: translate(-50%, 0);
-            z-index: 1;
-
-            :global(.cols) {
-              border-color: transparent;
-            }
-
-            .illustrationsMask {
-              grid-row: 1;
-              grid-column: 1 / span 7;
-              background-color: ${theme.color.primary};
-              transform: translateY(-100%);
-              z-index: 3;
-            }
-
-            .illustrations {
-              grid-row: 1;
-              grid-column: 1 / span 7;
-              .slider {
-                max-width: 100%;
-                img {
-                  height: 100vh;
-                  max-width: 100%;
-                  object-fit: cover;
-                  object-position: left 50%;
-                }
-              }
-              clip-path: url(#bands);
-            }
-
-            .sheetMask {
-              grid-row: 1;
-              grid-column: 8 / span 7;
-              background-color: ${theme.color.primary};
-              z-index: 3;
-              transform: translateY(-100%)
-            }
-
-            .sheet {
-              grid-row: 1;
-              grid-column: 9 / span 7;
-              padding-top: 220px;
-              font-weight: 300;
-              overflow-y: auto;
-              scrollbar-width: none;
-              padding-right: 50px;
-              -ms-overflow-style: none;
-              &::-webkit-scrollbar {
-                display: none;
-              }
-              .title {
-                font-weight: bold;
-                font-size: 3.5em;
-                line-height: 1.25em;
-              }
-              .infos {
-                display: grid;
-                grid-template-rows: 1fr 1fr;
-                grid-template-columns: 1fr 1fr;
-                grid-gap: 8px;
-                margin: 30px 0 40px 0;
-                span {
-                  font-weight: 600;
-                  letter-spacing: 0.5px;
-                  padding-right: 5px;
-                }
-              }
-              .content {
-                font-size: 1.1em;
-                line-height: 1.5em;
-              }
-            }
-            .iconClose {
-              grid-row: 1;
-              grid-column: 14;
-              align-self: start;
-              margin-top: 180px;
-              justify-self: center;
-              width: 40px;
-              z-index: 1;
-            }
-            .iconDown {
-              grid-row: 1;
-              grid-column: 8;
-              width: 15px;
-              align-self: end;
-              justify-self: center;
-              margin-bottom: 30px;
-              z-index: 1;
-            }
-          }
-        `}
-      </style>
     </>
   );
 }

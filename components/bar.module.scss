@@ -1,26 +1,25 @@
-          .barContainer {
-            margin: 35px 0;
-          }
-          path {
-            stroke-linecap: round;
-            ;
-          }
-          path.pathPath {
-            stroke: var(--main-color-grid);
-          }
-          path.pathAnimated {
-            stroke: var(--main-color-primary);
-          }
-          text {
-            font-weight: 300;
-          }
-          .text1 {
-            font-size: 14px;
-          }
-          .text2 {
-            font-size: 7px;
-          }
-          .text3 {
-            font-weight: 600;
-            font-size: 9px;
-          }
+.barContainer {
+  margin: 35px 0;
+  path {
+    stroke-linecap: round;
+  }
+  path.pathPath {
+    stroke: var(--main-color-grid);
+  }
+  path.pathAnimated {
+    stroke: var(--main-color-primary);
+  }
+  text {
+    font-weight: 300;
+  }
+  .text1 {
+    font-size: 14px;
+  }
+  .text2 {
+    font-size: 7px;
+  }
+  .text3 {
+    font-weight: 600;
+    font-size: 9px;
+  }
+}

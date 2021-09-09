@@ -3,9 +3,9 @@ import React from "react";
 import Grid from "../components/grid";
 import Gauge from "../components/gauge";
 import Bar from "../components/bar";
+import styles from "./skills.module.scss";
 
 const Skills = () => {
-
   const isMobile = false;
 
   return (
@@ -14,25 +14,29 @@ const Skills = () => {
         style={{ gridTemplateRows: `490px 280px 280px 560px` }}
         drawCols={isMobile ? 7 : 14}
       >
-        <div className="title">Compétences</div>
+        <div className={`title ${styles.title}`}>Compétences</div>
         <div
-          className="label"
-          style={isMobile ? {
-            gridRow: `1`,
-            gridColumn: `2 / span 2`,
-            justifySelf: `center`,
-            alignSelf: `end`,
-          } : {
-              gridRow: `1`,
-              gridColumn: `3 / span 2`,
-              justifySelf: `center`,
-              alignSelf: `end`,
-            }}
+          className={`label ${styles.label}`}
+          style={
+            isMobile
+              ? {
+                  gridRow: `1`,
+                  gridColumn: `2 / span 2`,
+                  justifySelf: `center`,
+                  alignSelf: `end`,
+                }
+              : {
+                  gridRow: `1`,
+                  gridColumn: `3 / span 2`,
+                  justifySelf: `center`,
+                  alignSelf: `end`,
+                }
+          }
         >
           Frontend
         </div>
         <div
-          className="label"
+          className={`label ${styles.label}`}
           style={{
             gridRow: `1`,
             gridColumn: `8 / span 2`,
@@ -115,20 +119,16 @@ const Skills = () => {
           value={70}
           label="Animations"
         />
-        <div className="bars">
+        <div className={`bars ${styles.bars}`}>
           <div style={{ maxWidth: `46%` }}>
-            <div className="label">
-              IOT
-            </div>
+            <div className={`label ${styles.label}`}>IOT</div>
             <Bar value={70} label="C++" />
             <Bar value={80} label="Arduino" />
             <Bar value={60} label="Conception" />
             <Bar value={60} label="Électronique" />
           </div>
           <div style={{ maxWidth: `46%` }}>
-            <div className="label">
-              & More
-            </div>
+            <div className={`label ${styles.label}`}>& More</div>
             <Bar value={90} label="Impression 3D" />
             <Bar value={60} label="Usinage CNC" />
             <Bar value={90} label="Modélisme (drones, hélicos, FVP...)" />

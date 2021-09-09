@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./grid.module.scss"
 
 const Grid = ({ children, className = '', drawCols, colsCss, style }) => {
   let divs;
@@ -9,11 +10,11 @@ const Grid = ({ children, className = '', drawCols, colsCss, style }) => {
   const s = drawCols ? { gridTemplateColumns: `repeat(${drawCols}, 1fr)` } : {};
 
   return (
-    <div className={`${className} grid`} style={{ ...s, ...style }}>
+    <div className={`grid ${styles.grid} ${className}`} style={{ ...s, ...style }}>
       {divs &&
         divs.map((_, i) => (
           <b
-            className="cols"
+            className={`cols ${styles.cols}`}
             style={{
               gridColumn: `${i + 1}`,
               ...colsCss,
