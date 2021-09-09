@@ -7,7 +7,7 @@ import Menu from "../components/menu";
 import Grid from "../components/grid";
 import Cursor from "../components/cursor";
 import ContactInfos from "../components/contactInfos";
-import theme from "../theme";
+import "../sass/styles.scss";
 
 export default function App({ Component, pageProps, router }) {
   const apolloClient = useApollo(pageProps.initialApolloState);

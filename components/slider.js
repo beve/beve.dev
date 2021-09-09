@@ -96,13 +96,6 @@ export default (props) => {
           />
         </svg>
       </div>
-      <style jsx>
-        {`
-          .slider {
-            padding: 30px 0 30px 200px;
-          }
-        `}
-      </style>
     </>
   );
 };

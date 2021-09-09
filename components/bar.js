@@ -1,5 +1,3 @@
-import theme from "../theme/index"
-
 const Bar = ({
   value,
   barHeight = 5,
@@ -76,6 +74,7 @@ const Bar = ({
         <defs>
           <path
             id="labelPath"
+            style={{strokeWidth: barHeight}}
             d={`M${halfHeight},${15 - halfHeight} H${computedValue + 100}`}
           />
         </defs>
@@ -86,6 +85,7 @@ const Bar = ({
           />{" "}
           <path
             className="pathAnimated"
+            style={{width, stroke: blue, strokeWidth: barHeight}}
             d={`M${halfHeight},${27 - halfHeight} H${width + halfHeight}`}
           />
         </g>
@@ -107,39 +107,6 @@ const Bar = ({
           </textPath>
         </text>
       </svg>
-      <style jsx>
-        {`
-          .barContainer {
-            margin: 35px 0;
-          }
-
-          path {
-            stroke-linecap: round;
-            stroke-width: ${barHeight};
-          }
-          path.pathPath {
-            stroke: ${theme.color.grid};
-          }
-          path.pathAnimated {
-            stroke: ${theme.color.primary};
-            stroke-dasharray: ${width};
-            stroke-dashoffset: ${width};
-          }
-          text {
-            font-weight: 300;
-          }
-          .text1 {
-            font-size: 14px;
-          }
-          .text2 {
-            font-size: 7px;
-          }
-          .text3 {
-            font-weight: 600;
-            font-size: 9px;
-          }
-        `}
-      </style>
     </div>
   );
 };

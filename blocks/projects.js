@@ -29,20 +29,6 @@ export default function Projects({ data }) {
           );
         })}
       </Grid>
-      <style jsx>
-        {`
-          .title {
-            grid-row: 2;
-            grid-column: 2 / -1;
-            font-size: 3.5em;
-            letter-spacing: 1px;
-            align-self: center;
-            margin-bottom: 20px;
-            font-weight: 700;
-          }
-
-        `}
-      </style>
     </>
   );
 }

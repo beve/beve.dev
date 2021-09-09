@@ -1,0 +1,19 @@
+.innerCursor {
+  position: fixed;
+  z-index: 101;
+  pointer-events: none;
+  circle {
+    fill: #e73c36;
+  }
+}
+.outerCursor {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  circle {
+    fill-opacity: 0.1;
+    stroke: #ccc;
+    stroke-width: 2px;
+    fill: #000;
+  }
+}

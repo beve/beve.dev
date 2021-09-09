@@ -22,20 +22,6 @@ const Grid = ({ children, className = '', drawCols, colsCss, style }) => {
           ></b>
         ))}
       {children}
-      <style jsx>
-        {`
-          .grid {
-            display: grid;
-          }
-          .cols {
-            grid-row: 1 / -1;
-            pointer-events: none;
-          }
-          .cols:nth-of-type(even) {
-            border-right: 1px solid #ececec;
-          }
-        `}
-      </style>
     </div>
   );
 };

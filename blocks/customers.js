@@ -44,19 +44,6 @@ export default function Customers({ data }) {
           );
         })}
       </Grid>
-      <style jsx>
-        {`
-          .title {
-            grid-row: 1;
-            grid-column: 2 / -1;
-            font-size: 3.5em;
-            letter-spacing: 1px;
-            align-self: end;
-            font-weight: 700;
-            padding-bottom: 65px;
-          }
-        `}
-      </style>
     </>
   );
 }

@@ -1,0 +1,40 @@
+.label {
+  font-weight: bold;
+  font-size: 1.9em;
+}
+.bars {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  grid-row: 4;
+  grid-column: 3 / span 10;
+  min-height: 560px;
+  background-color: #fff;
+  border: 1px solid #ececec;
+  border-left: none;
+  padding: 60px 60px 80px 60px;
+}
+.bars > div:first-of-type {
+  flex: 1 1 50%;
+}
+.bars > div:last-of-type {
+  flex: 1 1 50%;
+}
+.title {
+  position: relative;
+  grid-row: 1;
+  grid-column: 2 / span 3;
+  padding-top: 100px;
+  align-self: start;
+  font-size: 3.5em;
+  letter-spacing: 1px;
+  font-weight: 700;
+  height: 140px; // Position of text "Clients" top, use grid template-row height for simulate margin top
+}
+.title > div {
+  position: absolute;
+  font-size: 3.5em;
+  letter-spacing: 1px;
+  font-weight: 700;
+}

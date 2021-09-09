@@ -57,66 +57,6 @@ export default ({ style, name, illustration, logo, slug }) => {
           <div className="name">{name}</div>
         </div>
       </Link>
-      <style jsx>
-        {`
-          .homeProject {
-            position: relative;
-
-            .illustration {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
-
-            .logo {
-              position: absolute;
-              z-index: 1;
-              width: 60%;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              opacity: 0;
-            }
-
-            b {
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              width: 100%;
-              height: 100%;
-              overflow: hidden;
-              pointer-events: none;
-              span {
-                display: block;
-                position: absolute;
-                top: -12px;
-                left: -12px;
-                opacity: 0;
-                background-color: #e73c36;
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
-                pointer-events: none;
-              }
-            }
-
-            .name {
-              position: absolute;
-              left: 0;
-              right: 0;
-              bottom: -80px;
-              text-align: center;
-              font-weight: bold;
-              font-size: 1.85em;
-              opacity: 1;
-              pointer-events: none;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };

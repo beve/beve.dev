@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { gsap } from "gsap";
 import useTimeline from "../hooks/useTimeline";
 import CustomEase from "gsap/CustomEase";
-import theme from "../theme/index"
 gsap.registerPlugin(CustomEase);
 
 const Gauge = ({
@@ -57,6 +56,7 @@ const Gauge = ({
           cx={radius + strokeWidth}
           cy={radius + strokeWidth}
           r={radius}
+          style={{strokeWidth: `${strokeWidth}px`}}
         />
         <text
           x="50%"
@@ -75,37 +75,6 @@ const Gauge = ({
           {label}
         </text>
       </svg>
-      <style jsx>
-        {`
-          .gaugeContainer {
-            padding: 25px;
-            font-weight: 300;
-          }
-
-          .gauge {
-            width: 100%;
-          }
-
-          circle {
-            stroke: ${theme.color.primary};
-            stroke-width: ${strokeWidth}px;
-            fill: none;
-          }
-
-          .text1 {
-            font-size: 14px;
-          }
-
-          .text2 {
-            font-size: 7px;
-          }
-
-          .text3 {
-            font-weight: 600;
-            font-size: 9px;
-          }
-        `}
-      </style>
     </div>
   );
 };

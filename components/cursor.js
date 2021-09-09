@@ -106,10 +106,10 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
 
   return (
     <>
-      <svg ref={innerCursor} className="innerCursor" id="innerCursor" viewBox="0 0 202 202">
+      <svg ref={innerCursor} className="innerCursor" id="innerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
         <circle r="100" cx="101" cy="101" />
       </svg>
-      <svg ref={outerCursor} className="outerCursor" id="outerCursor" viewBox="0 0 202 202">
+      <svg ref={outerCursor} className="outerCursor" id="outerCursor" viewBox="0 0 202 202" style={{top: `-${derivedCursorSize / 2}px`, left: `-${derivedCursorSize / 2}px`, width: `${derivedCursorSize}px`, height: `${derivedCursorSize}px`, transform: `scale(${derivedGrowRatio})`}}>
         <defs>
           <filter id="blurMe">
             <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
@@ -132,39 +132,6 @@ const Cursor = ({ cursorSize = 14, growRatio = 3, hideCursor = true }) => {
         </defs>
         <circle ref={outerCursorCircle} r="100" cx="101" cy="101" />
       </svg>
-      <style jsx>
-        {`
-          .innerCursor {
-            position: fixed;
-            z-index: 101;
-            top: -${derivedCursorSize / 2}px;
-            left: -${derivedCursorSize / 2}px;
-            width: ${derivedCursorSize}px;
-            transform: scale(${derivedGrowRatio});
-            height: ${derivedCursorSize}px;
-            pointer-events: none;
-            circle {
-              fill: #e73c36;
-            }
-          }
-          .outerCursor {
-            position: fixed;
-            z-index: 100;
-            top: -${derivedCursorSize / 2}px;
-            left: -${derivedCursorSize / 2}px;
-            width: ${derivedCursorSize}px;
-            height: ${derivedCursorSize}px;
-            transform: scale(${derivedGrowRatio});
-            pointer-events: none;
-            circle {
-              fill-opacity: 0.1;
-              stroke: #ccc;
-              stroke-width: 2px;
-              fill: #000;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };
